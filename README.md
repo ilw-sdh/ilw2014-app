@@ -14,3 +14,9 @@ Developers
 - hamhut1066 (Development)
 - A3gis (Development)
 - Malyatrax (Assets/Tea, Coffee & Snacks provisioning)
+
+
+Dependencies
+------------
+
+Flask, flask_oauthlib
