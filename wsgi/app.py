@@ -21,7 +21,7 @@ facebook = oauth.remote_app('facebook',
     request_token_params={'scope': 'email,friends_location'}
 )
 
-def get_airport_infos():
+def get_airports():
     airports = defaultdict(lambda: { 'score': 0, 'friends': [] }, {})
     query = { 'q': 'SELECT name, current_location.latitude, current_location.longitude FROM user  WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me()) AND current_location' }
     friends = facebook.get('/fql?' + urlencode(query)).data
@@ -31,8 +31,17 @@ def get_airport_infos():
             airports[airport]['name']  = utils.iata_to_name(airport)
             airports[airport]['score'] += 1
             airports[airport]['friends'].append(friend['name'])
+    return airports
+
+def get_top_airports(n):
+    airports = get_airports()
+    query = { 'q': 'SELECT current_location.latitude, current_location.longitude FROM user WHERE uid = me()' }
+    my_location = facebook.get('/fql?' + urlencode(query)).data['data'][0]['current_location']
+    my_airports = utils.around(my_location['latitude'], my_location['longitude'])
+    for x in my_airports:
+        del airports[x]
     airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['score'], reverse=True)
-    return dict(airport_tuples[0:5])
+    return dict(airport_tuples[0:n])
 
 def login_required(f):
     @wraps(f)
@@ -49,7 +58,7 @@ def get_facebook_token(token=None):
 @app.route("/index")
 @login_required
 def index():
-    return render_template('index.html', me = facebook.get('/me'), airports = get_airport_infos() if 'oauth_token' in session else None)
+    return render_template('index.html', me = facebook.get('/me'), airports = get_top_airports(5))
 
 @app.route("/")
 def hello():
