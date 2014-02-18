@@ -1,6 +1,10 @@
 //hi
 
 $( document ).ready( function () {
+    $(".location").mouseover(function () {
+    });
+
+    //content run on document ready
     $("#content").text("loading");
     fs = populate_flights();
     $("#content").text("");
@@ -17,12 +21,15 @@ function populate_flights() {
            {location: 'London',     friends: ["charles","bob"]}];
 } 
 function format_flight(f) {
-    var r = "<li><h1>"+f.location+"</h1>";
-    r += "<ul class='friends'>";
-    for (j = 0; j < f.friends.length; j++) {
-        r += "<li>"+f.friends[j]+"</li>";
-    }
-    r += "</ul>";
+    var r = "<li><h1 class='location'>"+f.location+"</h1>";
+    //r += "<ul class='friends'>";
+    //for (j = 0; j < f.friends.length; j++) {
+        //r += "<li>"+f.friends[j]+"</li>";
+    //}
+    //r += "</ul>";
     r += "</li>";
     return r;
+}
+function users(u) {
+    return "";
 }
