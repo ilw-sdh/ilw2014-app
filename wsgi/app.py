@@ -19,7 +19,7 @@ facebook = oauth.remote_app('facebook',
     authorize_url='https://www.facebook.com/dialog/oauth',
     consumer_key="1466224973600976",
     consumer_secret="26960e4d7278e704e103525b338fd8f1",
-    request_token_params={'scope': 'email,friends_location'}
+    request_token_params={'scope': 'email,friends_location,user_location'}
 )
 
 def get_airports():

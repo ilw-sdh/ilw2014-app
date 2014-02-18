@@ -1,11 +1,14 @@
 from math import radians, sqrt, sin, cos, atan2
 import json
+import os
 
 SEARCH_RADIUS = 20
 
 iata_codes = {}
 airports = {}
-for line in open('./../data/airports.dat', 'r'):
+
+dir = os.path.dirname(__file__)
+for line in open(os.path.join(dir, './../data/airports.dat'), 'r'):
     item = line.rstrip().split(',')
     try:
         if item[5] != '\N':
