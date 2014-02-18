@@ -1,0 +1,112 @@
+/**
+ * ILWHACK 2014
+ *
+ * Bobby Tables
+ * Front End CSS
+ *
+ * COLORUS:
+ * Subtle        - #E6FADF
+ * Green Accent  - #CEF062
+ * Green         - #ABED32
+ * Purple Accent - #8359A3 - Light : #9B7AB5 - V. Light : #B49BC7
+ * Purple        - #4F3B75
+ * Red           - #C75141
+**/
+
+
+body, html {
+    color: #111;
+    background: #EEE;
+    font-family: 'Roboto', Helvetica-Neue, Helvetica, arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Slab', Times, serif;
+    font-weight: lighter;
+}
+
+
+/** ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  **/
+
+
+.bit {
+    margin: 0px -15px;
+    padding: 0px 15px;
+    background: #E6FADF;
+    color: #000;
+}
+
+    .bit-green {
+	background: #CEF062;
+    }
+    .bit-purple {
+	background: #8359A3;
+    }
+    .bit-red {
+	background: #C75141;
+    }
+
+
+.block {
+    background: #FFF;
+    margin: 0px 10px;
+    margin-bottom: 8px;
+    -webkit-box-shadow: 0 4px 1px -1px rgba(0,0,0,0.1);
+       -moz-box-shadow: 0 4px 1px -1px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 1px -1px rgba(0,0,0,0.1);
+}
+
+
+.btn-facebook {
+    background: #3B5998;
+    border-color: #2F4779;
+    max-heigth: 34px;
+}
+
+    .btn-facebook:hover,
+    .btn-facebook:focus {
+	background: #4E69A2;
+	border-color: #2F4779;
+    }
+
+.main {
+    margin-top: 20px;
+}
+
+
+.navbar-brand {
+    font-family: 'Roboto Slab', Times, serif;
+}
+
+.navbar-purple {
+    background-color: #8359A3;
+    border-color: #9B7AB5;
+}
+
+    .navbar-purple .navbar-brand {
+	color: #FFF;
+    }
+
+    .navbar-purple .navbar-collapse {
+	border-color: #9B7AB5;
+    }
+
+    .navbar-purple .navbar-form {
+	border: none;
+    }
+
+    .navbar-purple .navbar-toggle {
+	border-color: #9B7AB5;
+    }
+
+    .navbar-purple .navbar-toggle:hover {
+	background: #9B7AB5;
+    }
+
+    .navbar-purple .navbar-toggle:focus {
+	background: #9B7AB5;
+    }
+
+    .navbar-purple .navbar-toggle span.icon-bar {
+	background-color: #B49BC7;
+    }
