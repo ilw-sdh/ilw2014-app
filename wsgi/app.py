@@ -1,6 +1,8 @@
 from flask import *
 from flask_oauthlib.client import OAuth
 
+from utils import geocalc
+
 app = Flask(__name__)
 app.secret_key = "muchsecret"
 oauth = OAuth(app)
