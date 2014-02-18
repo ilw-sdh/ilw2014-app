@@ -2,6 +2,7 @@ from flask import *
 from flask_oauthlib.client import OAuth
 from urllib import urlencode
 from collections import defaultdict
+from functools import wraps
 import json
 
 import utils
@@ -32,16 +33,26 @@ def get_airport_infos():
             airports[airport]['friends'].append(friend['name'])
     return airports
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not ('oauth_token' in session):
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @facebook.tokengetter
 def get_facebook_token(token=None):
     return session.get('oauth_token')
 
+@app.route("/index")
+@login_required
+def index():
+    return render_template('index.html', me = facebook.get('/me'), airports = get_airport_infos() if 'oauth_token' in session else None)
+
 @app.route("/")
 def hello():
-    if 'oauth_token' in session:
-        return render_template('index.html', me = facebook.get('/me'), airports = get_airport_infos() if 'oauth_token' in session else None)
-    else:
-        return redirect('/login')
+    return render_template('hello.html')
 
 @app.route('/login')
 def login():
@@ -64,7 +75,7 @@ def facebook_authorized(resp):
             request.args['error_description']
         )
     session['oauth_token'] = (resp['access_token'], '')
-    return redirect('/')
+    return redirect(url_for('index'))
 
 @app.route("/show")
 def show():
