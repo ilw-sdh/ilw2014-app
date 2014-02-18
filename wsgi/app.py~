@@ -35,7 +35,6 @@ def get_airport_infos():
 def get_facebook_token(token=None):
     return session.get('oauth_token')
 
-@app.route("/airports")
 @app.route("/")
 def hello():
     #facebook.delete('/me/permissions')

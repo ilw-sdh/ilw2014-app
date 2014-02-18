@@ -1,0 +1,7 @@
+Hello!<br />
+
+{% if me %}
+	Logged in as {{ (me.data['id'], me.data['name']) }}
+{% else %}
+	<a href="/login">Login</a>
+{% endif %}
