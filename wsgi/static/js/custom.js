@@ -2,10 +2,10 @@
 
 $( document ).ready( function () {
     $("#content").text("loading");
-    f = populate_flights();
+    fs = populate_flights();
     $("#content").text("");
-    for (i = 0; i < f.length; i++) {
-        $("#content").append("<li>"+f[i].location+"</li>");
+    for (i = 0; i < fs.length; i++) {
+        $("#content").append(format_flight(fs[i]));
     }
 });
 
@@ -16,3 +16,13 @@ function populate_flights() {
     return [{location: 'Edinburgh', friends: ["james","hamish"]},
            {location: 'London',     friends: ["charles","bob"]}];
 } 
+function format_flight(f) {
+    var r = "<li><h1>"+f.location+"</h1>";
+    r += "<ul class='friends'>";
+    for (j = 0; j < f.friends.length; j++) {
+        r += "<li>"+f.friends[j]+"</li>";
+    }
+    r += "</ul>";
+    r += "</li>";
+    return r;
+}
