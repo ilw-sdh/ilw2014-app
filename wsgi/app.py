@@ -27,6 +27,7 @@ def get_airport_infos():
     for friend in friends['data']:
         friend_airports = utils.around(friend['current_location']['latitude'], friend['current_location']['longitude'])
         for airport in friend_airports:
+            airports[airport]['name']  = utils.iata_to_name(airport)
             airports[airport]['score'] += 1
             airports[airport]['friends'].append(friend['name'])
     return airports
@@ -37,15 +38,22 @@ def get_facebook_token(token=None):
 
 @app.route("/")
 def hello():
-    #facebook.delete('/me/permissions')
-    #del session['oauth_token']
-    return render_template('index.html', me = get_airport_infos() if 'oauth_token' in session else None)
+    if 'oauth_token' in session:
+        return render_template('index.html', me = facebook.get('/me'), airports = get_airport_infos() if 'oauth_token' in session else None)
+    else:
+        return redirect('/login')
 
 @app.route('/login')
 def login():
     return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
         _external=True))
+
+@app.route("/logout")
+def logout():
+    facebook.delete('/me/permissions')
+    del session['oauth_token']
+    return redirect('/')
 
 @app.route('/login/authorized')
 @facebook.authorized_handler

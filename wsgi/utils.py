@@ -2,12 +2,14 @@ from math import radians, sqrt, sin, cos, atan2
 
 SEARCH_RADIUS = 20
 
+iata_codes = {}
 airports = {}
 for line in open('./../data/airports.dat', 'r'):
     item = line.rstrip().split(',')
     try:
         if item[5] != '\N':
             airports[item[4]] = (float(item[6]), float(item[7]))
+            iata_codes[item[4]] = item[1:4]
     except: pass
 
 def geocalc(lat1, lon1, lat2, lon2):
@@ -43,5 +45,8 @@ def around(lat, lon):
         if geocalc(lat, lon, v[0], v[1]) < SEARCH_RADIUS:
             results.append(k)
     return results if len(results) > 0 else [closest(lat, lon)]
+
+def iata_to_name(iata):
+    return iata_codes[iata]
 
 #print around(55.9500, -3.2000)
