@@ -1,8 +1,9 @@
-from flask import Flask, url_for, request
-from flask_oauth import OAuth
+from flask import Flask, url_for, request, session, flash, render_template
+from flask_oauthlib.client import OAuth
 
 app = Flask(__name__)
-oauth = OAuth()
+app.secret_key = "muchsecret"
+oauth = OAuth(app)
 
 facebook = oauth.remote_app('facebook',
     base_url='https://graph.facebook.com/',
@@ -14,16 +15,34 @@ facebook = oauth.remote_app('facebook',
     request_token_params={'scope': 'email'}
 )
 
+@facebook.tokengetter
+def get_facebook_token(token=None):
+    return session.get('oauth_token')
+
 @app.route("/")
 def hello():
-    return "Hello ILWhack 2014!."
+    return render_template('index.html')
 
 @app.route('/login')
 def login():
-    return facebook.authorize(callback="http://localhost/")
+    return facebook.authorize(callback=url_for('facebook_authorized',
+        next=request.args.get('next') or request.referrer or None,
+        _external=True))
+
+@app.route('/login/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
 
 if __name__ == "__main__":
     app.debug = True
-    app.config['SECRET_KEY'] = "muchsecret"
-    app.run(port = 80)
+    app.run()
 
