@@ -26,13 +26,20 @@ def geocalc(lat1, lon1, lat2, lon2):
     c = atan2(y, x)
     return EARTH_R * c
 
-def find(lat, lon):
-    closest, dist = None, -1
+def closest(lat, lon):
+    result, dist = None, -1
     for k, v in airports.iteritems():
         d = geocalc(lat, lon, v[0], v[1])
-        if dist == -1 or d < dist:
-            closest = k
+        if not result or d < dist:
+            result = k
             dist = d
-    return closest
+    return result
 
-print find(55.9500, -3.2000)
+def around(lat, lon):
+    results = []
+    for k, v in airports.iteritems():
+        if geocalc(lat, lon, v[0], v[1]) < 30:
+            results.append(k)
+    return results if len(results) > 0 else [closest(lat, lon)]
+
+print around(55.9500, -3.2000)
