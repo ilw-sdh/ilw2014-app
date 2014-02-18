@@ -3,9 +3,12 @@ Hello {{ me.data['name'] }} ({{ me.data['id'] }})!<br />
 
 <hr />
 
+Take a trip to see...
 <ol>
 {% for k, v in airports.iteritems() %}
-	<li>Take a trip to see  {{ v.friends | length }} friends in <i>{{ v.name[1] }}, {{ v.name[2] }}</i> for {{ v.prices[0]}} pounds!</li>
+	<li> {{ v.friends | length }} friends in <i>{{ v.name[1] }}, {{ v.name[2] }}</i> for {{ v.prices[0]}} pounds!<br />
+		({{ v.friends[0:3] |join(', ') }}...)
+	</li>
 {% endfor %}
 </ol>
 
