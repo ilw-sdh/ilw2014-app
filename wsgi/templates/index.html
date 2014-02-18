@@ -5,6 +5,14 @@ Hello {{ me.data['name'] }} ({{ me.data['id'] }})!<br />
 
 <ol>
 {% for k, v in airports.iteritems() %}
+	<li>Take a trip to see  {{ v.friends | length }} friends in <i>{{ v.name[1] }}, {{ v.name[2] }}</i> for {{ v.prices[0]}} pounds!</li>
+{% endfor %}
+</ol>
+
+<hr />
+
+<ol>
+{% for k, v in airports.iteritems() %}
 	<li>{{ k }} => {{ v }}</li>
 {% endfor %}
 </ol>

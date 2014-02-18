@@ -1,4 +1,5 @@
 from math import radians, sqrt, sin, cos, atan2
+import json
 
 SEARCH_RADIUS = 20
 
@@ -9,7 +10,7 @@ for line in open('./../data/airports.dat', 'r'):
     try:
         if item[5] != '\N':
             airports[item[4]] = (float(item[6]), float(item[7]))
-            iata_codes[item[4]] = item[1:4]
+            iata_codes[item[4]] = map(json.loads, item[1:4])
     except: pass
 
 def geocalc(lat1, lon1, lat2, lon2):

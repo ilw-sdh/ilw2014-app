@@ -6,6 +6,7 @@ from functools import wraps
 import json
 
 import utils
+import skyscanner
 
 app = Flask(__name__)
 app.secret_key = "muchsecret"
@@ -41,7 +42,15 @@ def get_top_airports(n):
     for x in my_airports:
         del airports[x]
     airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['score'], reverse=True)
-    return dict(airport_tuples[0:n])
+    airports = dict(airport_tuples[0:n])
+    for k, v in airports.iteritems():
+        v['prices'] = []
+        for x in my_airports:
+            try:
+                v['prices'].append(skyscanner.find_best_quote("LON", json.loads(k))['MinPrice'])
+            except: pass
+    airports = dict((k, v) for k, v in airports.iteritems() if v['prices'])
+    return airports
 
 def login_required(f):
     @wraps(f)
@@ -58,7 +67,7 @@ def get_facebook_token(token=None):
 @app.route("/index")
 @login_required
 def index():
-    return render_template('index.html', me = facebook.get('/me'), airports = get_top_airports(5))
+    return render_template('index.html', me = facebook.get('/me'), airports = get_top_airports(10))
 
 @app.route("/")
 def hello():
