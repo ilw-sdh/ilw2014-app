@@ -30,10 +30,12 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .bit {
-    margin: 0px -15px;
-    padding: 0px 15px;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 15px 15px;
     background: #E6FADF;
     color: #000;
+    font-size: 150%;
 }
 
     .bit-green {
@@ -41,15 +43,20 @@ h1, h2, h3, h4, h5, h6 {
     }
     .bit-purple {
 	background: #8359A3;
+	color: #FFF !important;
     }
     .bit-red {
 	background: #C75141;
     }
 
+    .bit h1, .bit h2, .bit h3 {
+	font-size: 120%;
+    }
+
 
 .block {
     background: #FFF;
-    margin: 0px 10px;
+    margin: 0;
     margin-bottom: 8px;
     -webkit-box-shadow: 0 4px 1px -1px rgba(0,0,0,0.1);
        -moz-box-shadow: 0 4px 1px -1px rgba(0,0,0,0.1);
@@ -69,6 +76,36 @@ h1, h2, h3, h4, h5, h6 {
 	border-color: #2F4779;
     }
 
+
+.carousel-caption {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+
+@media (min-width: 1000px) {
+    .carousel {
+	max-height: 400px;
+    }
+
+    .carousel-inner {
+	max-height: 400px;
+    }
+
+    .carousel-inner .item {
+	margin-top: -250px;
+    }
+
+    .carousel-inner .item .carousel-caption {
+	padding-bottom: 100px;
+    } 
+}
+
+.centre {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
 .main {
     margin-top: 20px;
 }
@@ -81,6 +118,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-purple {
     background-color: #8359A3;
     border-color: #9B7AB5;
+    border-bottom: 3px solid #9B7AB5;
 }
 
     .navbar-purple .navbar-brand {
@@ -110,3 +148,10 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-purple .navbar-toggle span.icon-bar {
 	background-color: #B49BC7;
     }
+
+
+
+.padder {
+    padding: 15px 15px;
+    margin: 0 auto;
+}
