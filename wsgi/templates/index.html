@@ -5,3 +5,11 @@ Hello!<br />
 {% else %}
 	<a href="/login">Login</a>
 {% endif %}
+
+<hr />
+
+<ol>
+{% for k, v in me.iteritems() %}
+	<li>{{ k }} => {{ v }}</li>
+{% endfor %}
+</ol>
