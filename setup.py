@@ -6,5 +6,5 @@ setup(name='ILW-app',
       author='DROP TABLE ilwhack_team',
       author_email='ilw2014@emberwalker.cc',
       url='http://www.python.org/sigs/distutils-sig/',
-      install_requires=['flask_oauthlib=0.4.3','Flask>=0.7.2', 'MarkupSafe'],
+      install_requires=['Flask-OAuthlib','Flask>=0.7.2', 'MarkupSafe'],
      )
