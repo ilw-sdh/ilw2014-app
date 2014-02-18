@@ -35,6 +35,9 @@ def get_airport_infos():
 def get_facebook_token(token=None):
     return session.get('oauth_token')
 
+@app.route("/show")
+def show():
+    return render_template('show.html')
 @app.route("/")
 def hello():
     #facebook.delete('/me/permissions')
