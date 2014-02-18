@@ -1,5 +1,7 @@
-Hello!
+Hello!<br />
 
-{% for message in get_flashed_messages() %}
-    {{ message }}<br />
-{% endfor %}
+{% if me %}
+	Logged in as {{ (me.data['id'], me.data['name']) }}
+{% else %}
+	<a href="/login">Login</a>
+{% endif %}

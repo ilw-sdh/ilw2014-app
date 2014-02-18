@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, session, flash, render_template
+from flask import *
 from flask_oauthlib.client import OAuth
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def get_facebook_token(token=None):
 
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return render_template('index.html', me = facebook.get('/me') if 'oauth_token' in session else None)
 
 @app.route('/login')
 def login():
@@ -38,9 +38,7 @@ def facebook_authorized(resp):
             request.args['error_description']
         )
     session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
-    return 'Logged in as id=%s name=%s redirect=%s' % \
-        (me.data['id'], me.data['name'], request.args.get('next'))
+    return redirect('/')
 
 if __name__ == "__main__":
     app.debug = True
