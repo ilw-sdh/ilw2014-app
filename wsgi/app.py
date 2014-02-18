@@ -31,7 +31,8 @@ def get_airport_infos():
             airports[airport]['name']  = utils.iata_to_name(airport)
             airports[airport]['score'] += 1
             airports[airport]['friends'].append(friend['name'])
-    return airports
+    airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['score'], reverse=True)
+    return dict(airport_tuples[0:5])
 
 def login_required(f):
     @wraps(f)
