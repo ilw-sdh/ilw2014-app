@@ -106,7 +106,7 @@
      <div class="container main">
        
        <div class="row">
-	 <div class="col-md-4">
+	 <div class="col-md-4 col-left">
 	   <div class="block">
 	     <div class="bit bit-purple">
 	       <h1>Get the best deals</h1>
@@ -125,7 +125,7 @@
 	     </div>
 	     <div class="padder">
 	       <p>Using Facebook's geolocation services we can target flights to the nearest airport to 
-		 your frirends & family.</p>
+		 your friends & family.</p>
 	     </div>
 	   </div>
 	 </div>

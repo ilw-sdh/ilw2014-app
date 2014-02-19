@@ -114,6 +114,10 @@ def facebook_authorized(resp):
 def show():
     return render_template('home.html')
 
+@app.route("/main")
+def show_main():
+    return render_template('main.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
