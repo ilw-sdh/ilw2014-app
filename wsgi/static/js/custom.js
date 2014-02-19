@@ -1,9 +1,13 @@
 //hi
 
 $( document ).ready( function () {
-    $(".location").mouseover(function () {
-    });
 
+    $(".col-md-4").on("mouseenter",function () {
+        $(this).addClass("text-muted");
+    });
+    $(".col-md-4").on("mouseleave",function () {
+        $(this).removeClass("text-muted");
+    });
     //content run on document ready
     $("#content").text("loading");
     fs = populate_flights();
@@ -29,7 +33,4 @@ function format_flight(f) {
     //r += "</ul>";
     r += "</li>";
     return r;
-}
-function users(u) {
-    return "";
 }
