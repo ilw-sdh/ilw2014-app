@@ -16,7 +16,6 @@ $(document).ready( function () {
 
     $(".btn-modal").on("click", function () {
         //set modal to loading!
-        console.log(flights);
         reset_modal();
         $('#myModal').modal('toggle');
         //populate the modal here!!!
@@ -28,35 +27,37 @@ function reset_modal() {
     //resets the modal to a loading screen
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
-    $("#flight-data").html("<tr></tr>");
+    $("#flight-data").html("<tr><th>Date</th><th>Carrier</th><th>Fly Now!</th></tr>");
 }
-function populate_modal(city) {
+function populate_modal(city_id) {
     //this gets all relevant data for the modal
-    var data = flights[city];
-    $("#modalTitle").text("Flying to "+data[0].dest);
-    data.forEach(function(entry) {
-        $("#flight-data tr:last").after(prepare_flight(entry));
+    var data = flights[keys[city_id]];
+    $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
+    $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
+    data.quotes.forEach(function (entry) { 
+        $("#flight-data tr:last").after(prepare_flight(entry)); 
     });
 }
 function populate_data() {
-    console.log(flights);
     for (var data in flights) {
         keys.push(data);
     }
     $("#first-location h1").html(flights[keys[0]].name[1] + "<br />&pound;"+flights[keys[0]].cheapest_quote.MinPrice);
     $("#first-location p").html("Go and see <em>"+flights[keys[0]].friends[0].name+"</em> in "+flights[keys[0]].name[1]+", "+flights[keys[0]].name[2]);
+    $("#first-location button").attr("location", 0);
     $("#second-location h1").html(flights[keys[1]].name[1] + "<br />&pound;"+flights[keys[1]].cheapest_quote.MinPrice);
     $("#second-location p").html("You have <em>"+flights[keys[1]].friends.length+"</em> friends near "+flights[keys[1]].name[1]);
+    $("#second-location button").attr("location", 1);
     $("#third-location h1").html(flights[keys[2]].name[1] + "<br />&pound;"+flights[keys[2]].cheapest_quote.MinPrice);
     $("#third-location p").html("Flights available to go and see <em>"+flights[keys[2]].friends[0].name+"</em> in "+flights[keys[2]].name[1]);
+    $("#third-location button").attr("location", 2);
 }
 function prepare_flight(dest) {
+    //console.log(dest);
     var r = "<tr>";
-    r += "<td class='date'>Today</td>";
-    r += "<td class='carrier'>"+dest.carrier+"</td>";
-    r += "<td class='begin'>Current</td>";
-    r += "<td class='dest'>"+dest.dest+"</td>";
-    r += "<td class='book'><button class='btn btn-success'>BA760</button></td>";
+    r += "<td class='date'>"+dest.OutboundLeg.DepartureDate+"</td>";
+    r += "<td class='carrier'>"+dest.OutboundLeg.CarrierIds[0]+"</td>";
+    r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
     r += "</tr>";
     return r;
 }
