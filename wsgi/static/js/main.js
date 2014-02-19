@@ -7,6 +7,7 @@
 */
 var flights;
 var keys = [];
+var ready = false;
 //get flight data
 $.get( "/top_flights", function( data ) {
     flights = JSON.parse(data);
@@ -16,10 +17,12 @@ $(document).ready( function () {
 
     $(".btn-modal").on("click", function () {
         //set modal to loading!
-        reset_modal();
-        $('#myModal').modal('toggle');
-        //populate the modal here!!!
-        populate_modal($(this).attr("location"));
+        if(ready) {
+            reset_modal();
+            $('#myModal').modal('toggle');
+            //populate the modal here!!!
+            populate_modal($(this).attr("location"));
+        }
     });
 
 });
@@ -27,7 +30,7 @@ function reset_modal() {
     //resets the modal to a loading screen
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
-    $("#flight-data").html("<tr><th>Date</th><th>Carrier</th><th>Fly Now!</th></tr>");
+    $("#flight-data").html("<tr><th>Date</th><th>Airline</th><th>Fly Now!</th></tr>");
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
@@ -39,6 +42,7 @@ function populate_modal(city_id) {
     });
 }
 function populate_data() {
+    ready = true;
     for (var data in flights) {
         keys.push(data);
     }
@@ -53,9 +57,10 @@ function populate_data() {
     $("#third-location button").attr("location", 2);
 }
 function prepare_flight(dest) {
-    //console.log(dest);
+    var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
+    //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class='date'>"+dest.OutboundLeg.DepartureDate+"</td>";
+    r += "<td class='date'>"+date+"</td>";
     r += "<td class='carrier'>"+dest.OutboundLeg.CarrierIds[0]+"</td>";
     r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
     r += "</tr>";
