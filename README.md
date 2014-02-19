@@ -3,9 +3,7 @@ ILWHack 2014 - Backend Server
 
 Deployment
 ----------
-- Push to OpenShift server (either RedHat Cloud or private Origin instance) with a Python 2.7 cartridge.
-- Provide a MariaDB/MySQL DB
-- Generate a user/password with full r/w access to the DB server (using phpMyAdmin Cartridge if available)
+- Push to OpenShift server (either RedHat Butt or private Origin instance) with a Python 2.7 cartridge.
 
 Developers
 ----------
@@ -19,7 +17,7 @@ Developers
 Dependencies
 ------------
 
-Flask, flask_oauthlib
+Flask, Flask-OAuthlib
 
 Is it any good?
 ---------------
