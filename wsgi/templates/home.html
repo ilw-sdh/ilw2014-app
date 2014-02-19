@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="http://hack.hamhut1066.com/js/jquery.js"></script>
     <script tyle="text/javascript" src="http://hack.hamhut1066.com/js/bootstrap.min.js"></script>
+    <script tyle="text/javascript" src="http://hack.hamhut1066.com/js/custom.js"></script>
   </head>
 
   
@@ -32,8 +33,9 @@
 	 </div>
 	 
 	 <div class="navbar-collapse collapse">
-           <form class="navbar-form navbar-right" role="form">
-             <button type="button" class="btn btn-facebook btn-success">Sign in with facebook</button>
+           <form class="navbar-form navbar-right"  action="/login" role="form">
+            <!--TODO: add logout button -->
+             <button type="submit" class="btn btn-facebook btn-success">Sign in with facebook</button>
            </form>
          </div>
 	 
@@ -104,7 +106,7 @@
      <div class="container main">
        
        <div class="row">
-	 <div class="col-md-4">
+	 <div class="col-md-4 col-left">
 	   <div class="block">
 	     <div class="bit bit-purple">
 	       <h1>Get the best deals</h1>

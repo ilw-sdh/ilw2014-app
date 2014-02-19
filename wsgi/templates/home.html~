@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="http://hack.hamhut1066.com/js/jquery.js"></script>
     <script tyle="text/javascript" src="http://hack.hamhut1066.com/js/bootstrap.min.js"></script>
+    <script tyle="text/javascript" src="http://hack.hamhut1066.com/js/custom.js"></script>
   </head>
 
   
@@ -32,8 +33,9 @@
 	 </div>
 	 
 	 <div class="navbar-collapse collapse">
-           <form class="navbar-form navbar-right" role="form">
-             <button type="button" class="btn btn-facebook btn-success">Sign in with facebook</button>
+           <form class="navbar-form navbar-right"  action="/login" role="form">
+            <!--TODO: add logout button -->
+             <button type="submit" class="btn btn-facebook btn-success">Sign in with facebook</button>
            </form>
          </div>
 	 
@@ -73,14 +75,14 @@
 	   </div>
 	   
 	   <div class="item">
-	     <img src="img/bg-image2.jpg">
+	     <img src="http://hack.hamhut1066.com/img/bg-image2.jpg">
 	     <div class="carousel-caption">
 	       <h1>Streamline your booking process and go straight to the Airline</h1>
 	     </div>
 	   </div>
 	   
 	   <div class="item">
-	     <img src="img/bg-image4.jpg">
+	     <img src="http://hack.hamhut1066.com/img/bg-image4.jpg">
 	     <div class="carousel-caption">
 	       <h1>Look. A boat.</h1>
 	     </div>
