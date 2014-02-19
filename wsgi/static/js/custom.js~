@@ -17,7 +17,7 @@ function populate_flights() {
     //gets all the flight data from a variable and displays them x at a time
     //in a json, which can be loaded into an array that can then be changed,
     //depending on stuff.
-    return [{location: 'Edinburgh', price: '200', friends: ["james","hamish"]},
+    return [{location: 'Edinburgh', price: 'stoeua', friends: ["james","hamish"]},
            {location: 'London',     friends: ["charles","bob"]}];
 } 
 function format_flight(f) {
