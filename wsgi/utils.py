@@ -1,20 +1,27 @@
 from math import radians, sqrt, sin, cos, atan2
 import json
 import os
+import csv
 
 SEARCH_RADIUS = 20
 
 iata_codes = {}
 airports = {}
+airports_by_country = {}
 
 dir = os.path.dirname(__file__)
-for line in open(os.path.join(dir, './../data/airports.dat'), 'r'):
-    item = line.rstrip().split(',')
-    try:
+
+with open(os.path.join(dir, './../data/airports.dat'), 'r') as f:
+    reader = csv.reader(f)
+    for item in reader:
+
         if item[5] != '\N':
             airports[item[4]] = (float(item[6]), float(item[7]))
-            iata_codes[item[4]] = map(json.loads, item[1:4])
-    except: pass
+            if not (item[3] in airports_by_country):
+                airports_by_country[item[3]] = {}
+            airports_by_country[item[3]][item[4]] = airports[item[4]]
+            iata_codes[item[4]] = item[1:4]
+
 
 def geocalc(lat1, lon1, lat2, lon2):
     lat1 = radians(lat1)
@@ -46,6 +53,14 @@ def closest(lat, lon):
 def around(lat, lon):
     results = []
     for k, v in airports.iteritems():
+        if geocalc(lat, lon, v[0], v[1]) < SEARCH_RADIUS:
+            results.append(k)
+    return results if len(results) > 0 else [closest(lat, lon)]
+
+def around_by_country(country, lat, lon):
+    if not (country in airports_by_country): return around(lat, lon)
+    results = []
+    for k, v in airports_by_country[country].iteritems():
         if geocalc(lat, lon, v[0], v[1]) < SEARCH_RADIUS:
             results.append(k)
     return results if len(results) > 0 else [closest(lat, lon)]
