@@ -47,7 +47,7 @@ def get_top_airports(n):
         v['prices'] = []
         for x in my_airports:
             try:
-                v['prices'].append(skyscanner.find_best_quote("LON", json.loads(k))['MinPrice'])
+                v['prices'].append(skyscanner.find_best_quote("UK", json.loads(k))['MinPrice'])
             except: pass
     airports = dict((k, v) for k, v in airports.iteritems() if v['prices'])
     return airports
