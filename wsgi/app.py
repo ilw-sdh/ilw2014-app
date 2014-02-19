@@ -19,18 +19,25 @@ facebook = oauth.remote_app('facebook',
     authorize_url='https://www.facebook.com/dialog/oauth',
     consumer_key="1466224973600976",
     consumer_secret="26960e4d7278e704e103525b338fd8f1",
-    request_token_params={'scope': 'email,friends_location,user_location'}
+    request_token_params={'scope': 'email,friends_location,user_location,read_friendlists'}
 )
+
+
+def get_close_friends():
+    query =  { 'q': "SELECT uid FROM friendlist_member WHERE flid IN (SELECT flid FROM friendlist WHERE owner = me() AND type = 'close_friends')" }
+    close_friends = facebook.get('/fql?' + urlencode(query)).data['data']
+    return map(lambda f: f['uid'], close_friends)
 
 def get_airports():
     airports = defaultdict(lambda: { 'score': 0, 'friends': [] }, {})
-    query = { 'q': 'SELECT name, current_location.latitude, current_location.longitude FROM user  WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me()) AND current_location' }
+    query = { 'q': 'SELECT uid, name, current_location.latitude, current_location.longitude FROM user  WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me()) AND current_location' }
     friends = facebook.get('/fql?' + urlencode(query)).data
+    close_friends = get_close_friends()
     for friend in friends['data']:
         friend_airports = utils.around(friend['current_location']['latitude'], friend['current_location']['longitude'])
         for airport in friend_airports:
             airports[airport]['name']  = utils.iata_to_name(airport)
-            airports[airport]['score'] += 1
+            airports[airport]['score'] += 10 if friend['uid'] in close_friends else 1
             airports[airport]['friends'].append(friend['name'])
     return airports
 
