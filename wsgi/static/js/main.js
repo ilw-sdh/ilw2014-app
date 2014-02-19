@@ -5,11 +5,17 @@
             [ {dest: "Bristol", price: "160", carrier: "British Airways"},
                     {dest: "Bristol", price: "20", carrier: "Joe's Hardware"}]];
 */
-var flights = get_flight_data();
+var flights;
+//get flight data
+$.get( "/top_flights", function( data ) {
+    flights = JSON.parse(data);
+    console.log("all done");
+});
 $(document).ready( function () {
 
     $(".btn-modal").on("click", function () {
         //set modal to loading!
+        console.log(flights);
         reset_modal();
         $('#myModal').modal('toggle');
         //populate the modal here!!!
@@ -40,8 +46,4 @@ function prepare_flight(dest) {
     r += "<td class='book'><button class='btn btn-success'>BA760</button></td>";
     r += "</tr>";
     return r;
-}
-function get_flight_data() {
-    console.log($.get("/top_flights"));
-    return 0;
 }
