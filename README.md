@@ -32,5 +32,5 @@ Ideas for future improvements
 - Take into account more data (friend's relative importance, hometowns (wanna visit the hometown of you best friend XXX? I'm sure you would have a lot to talk about!), recommendation based on places already visited, collaborative filtering, etc.
 - Price optimization (taking into account earth trajects)
 - Facebook friends with benefits (notifications when friends interested in your sex change their relationship status to single)
-- Cand-crush flighths
+- Candy-crush flights
 - Lots of other cool shits
