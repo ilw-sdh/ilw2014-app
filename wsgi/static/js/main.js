@@ -1,10 +1,11 @@
 //main.js
-var flights = [[{dest: "Poland", price: "242", carrier: "Ryan Air"},
+/*var flights = [[{dest: "Poland", price: "242", carrier: "Ryan Air"},
                     {dest: "Poland", price: "60", carrier: "British Airways"},
                     {dest: "Poland", price: "260", carrier: "Joe's Hardware"}],
             [ {dest: "Bristol", price: "160", carrier: "British Airways"},
                     {dest: "Bristol", price: "20", carrier: "Joe's Hardware"}]];
-
+*/
+var flights = get_flight_data();
 $(document).ready( function () {
 
     $(".btn-modal").on("click", function () {
@@ -39,4 +40,8 @@ function prepare_flight(dest) {
     r += "<td class='book'><button class='btn btn-success'>BA760</button></td>";
     r += "</tr>";
     return r;
+}
+function get_flight_data() {
+    console.log($.get("/top_flights"));
+    return 0;
 }
