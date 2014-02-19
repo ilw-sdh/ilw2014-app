@@ -52,8 +52,8 @@ def get_decorated_top_airports():
     for k, v in airports.iteritems():
         try:
             v['quotes'] = skyscanner.find_cheapest_quotes("UK", k)
-            cheapest_quote = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
-            v['index'] = v['score'] / math.log(cheapest_quote['MinPrice'])
+            v['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
+            v['index'] = v['score'] / math.log(v['cheapest_quote']['MinPrice'])
         except: pass
     airports = dict((k, v) for k, v in airports.iteritems() if 'quotes' in v and v['quotes'])
     return airports
@@ -63,31 +63,6 @@ def get_top_airports_by_index():
     airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['index'], reverse=True)
     return dict(airport_tuples[0:5])
 
-def get_top_flights():
-    airports = get_airports()
-    query = { 'q': 'SELECT current_location.latitude, current_location.longitude FROM user WHERE uid = me()' }
-    my_location = facebook.get('/fql?' + urlencode(query)).data['data'][0]['current_location']
-    my_airports = utils.around(my_location['latitude'], my_location['longitude'])
-    for x in my_airports:
-        del airports[x]
-    airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['score'], reverse=True)
-    airports = dict(airport_tuples[0:10])
-    flights = []
-    for k, v in airports.iteritems():
-        v['prices'] = []
-        for x in my_airports:
-            try:
-                quote = skyscanner.find_best_quote("UK", json.loads(k))
-                flights.append({
-                    'price': quote['MinPrice'],
-                    'friends_sample': random.sample(v['friends'], 3),
-                    'friends_count': len(v['friends']),
-                    'location': ', '.join(v['name'][1:3])
-
-                })
-            except: pass
-    flights = sorted(flights, key=lambda f: f['price'])
-    return flights[0:3]
 
 def login_required(f):
     @wraps(f)
@@ -100,16 +75,13 @@ def login_required(f):
 @app.route("/index")
 @login_required
 def index():
-    results = []
-    for k, x in get_top_airports_by_index().iteritems():
-        results.append((x['name'], x['score'], x['index']))
-    return json.dumps(results)
+    return "Index w00t"
     #return render_template('index.html', me = facebook.get('/me'), flights = get_top_flights())
 
 @app.route("/top_flights")
 @login_required
 def top_flights():
-    return json.dumps(get_top_flights())
+    return json.dumps(get_top_airports_by_index())
 
 @app.route("/")
 def hello():
