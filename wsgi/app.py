@@ -118,6 +118,10 @@ def show():
 def show_main():
     return render_template('main.html')
 
+@app.route("/friends")
+def show_friends():
+    return render_template('friends.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
