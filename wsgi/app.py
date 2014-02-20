@@ -78,7 +78,7 @@ def login_required(f):
 def index():
     #return "Index w00t"
     #return render_template('main.html', me = facebook.get('/me'), flights = get_top_flights())
-    return render_template('main.html')
+    return render_template('main.html', friends = fb.get_decorated_friends())
 
 @app.route("/top_flights")
 @login_required
