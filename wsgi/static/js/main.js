@@ -49,7 +49,7 @@ $(document).ready( function () {
             $(".friend-location").each(function () {
                 $(this).parent().parent().show();
             });
-    });
+    }
     $('#search').on("keyup", function () {
         var q = $('#search').val();
         $(".friend-name").each(function () {
