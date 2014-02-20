@@ -190,7 +190,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .friend-search {
     padding: 20px 40px;
-    background: #7AB57E;
+    background: #CCE3CF;
+    border-bottom: 2px solid #7AB57E;
+    margin: 0;
 }
 
 
