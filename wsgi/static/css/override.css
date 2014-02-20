@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .btn-facebook {
+    color: #FFF !important;
     background: #3B5998;
     border-color: #2F4779;
     max-heigth: 34px;
