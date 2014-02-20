@@ -53,7 +53,7 @@ def get_decorated_top_airports():
         try:
             v['quotes'] = skyscanner.find_cheapest_quotes("UK", k)
             v['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
-            v['index'] = v['score'] / math.log(v['cheapest_quote']['MinPrice'])
+            v['index'] = v['score'] # / math.log(v['cheapest_quote']['MinPrice'])
             v['url'] = skyscanner.url_for_journey("UK", k)
         except: pass
     airports = dict((k, v) for k, v in airports.iteritems() if 'quotes' in v and v['quotes'])
