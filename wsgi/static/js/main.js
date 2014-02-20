@@ -31,7 +31,7 @@ function reset_modal() {
     //resets the modal to a loading screen
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
-    $("#flight-data").html("<tr><th>Date</th><th>Airline</th><th>Fly Now!</th></tr>");
+    $("#flight-data").html("<tr><th>Date</th><th>Agent</th><th>Fly Now!</th></tr>");
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
