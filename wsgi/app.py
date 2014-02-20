@@ -66,7 +66,7 @@ def get_decorated_top_airports():
     airports = get_top_airports()
     for k, v in airports.iteritems():
         try:
-            v['quotes'] = skyscanner.find_cheapest_quotes("UK", k)
+            v['quotes'] = skyscanner.find_cheapest_quotes("edi", k)
             v['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
             v['index'] = v['friend_score'] # / math.log(v['cheapest_quote']['MinPrice'])
             v['url'] = skyscanner.url_for_journey("UK", k)
