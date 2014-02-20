@@ -45,7 +45,6 @@ $(document).ready( function () {
             }
         });
         $(this).toggleClass("selected");
-        }
     });
     $('#search').on("keyup", function () {
         var q = $('#search').val();
