@@ -14,19 +14,11 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
     
-    $('#tab-main a').click(function (e) {
+    $('#chooser a').click(function (e) {
 	e.preventDefault()
 	$(this).tab('show')
-    })
-    $('#tab-friends a').click(function (e) {
-	e.preventDefault()
-	$(this).tab('show')
-    })
+    });
 
-    $('#myTab a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
-    })
     $(".btn-modal").on("click", function () {
         //set modal to loading!
         if(ready) {
