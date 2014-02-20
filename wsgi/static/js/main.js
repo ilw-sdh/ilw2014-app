@@ -15,7 +15,6 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
 
-    $("td[data-toggle*='tooltip']").tooltip();
     $("#test").tooltip();
     $(".btn-modal").on("click", function () {
         //set modal to loading!
@@ -42,6 +41,7 @@ function populate_modal(city_id) {
     data.quotes.forEach(function (entry) { 
         $("#flight-data tr:last").after(prepare_flight(entry)); 
     });
+    $(".date-tooltip").tooltip();
 }
 function populate_data() {
     ready = true;
@@ -64,9 +64,10 @@ function populate_data() {
 }
 function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
+    var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class='date'data-toggle='tooltip' data-placement='top' title='hello'>"+date+"</td>";
+    r += "<td class='date'><div class='date-tooltip' data-toggle='tooltip' data-placement='auto left' title='"+rel_date+"'>"+date+"</div></td>";
     r += "<td class='carrier'>"+dest.OutboundLeg.CarrierIds[0]+"</td>";
     r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
     r += "</tr>";
