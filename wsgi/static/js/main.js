@@ -35,15 +35,20 @@ $(document).ready( function () {
 
     $(".friendlist tr").on("click", function() {
         $(this).toggleClass("selected");
+        var any_selected = false;
         var q = $(this).children(":last").children(".friend-location").text();
         $(".friend-location").each(function () {
+            if($(this).hasClass("selected")) {any_selected = true; }
             if($(this).text().toLowerCase().indexOf(q.toLowerCase()) != -1) {
                 $(this).parent().parent().show();
             } else {
                 $(this).parent().parent().hide();
             }
         });
-        console.log(q);
+        if(any_selected) {
+            $(".friend-location").each(function () {
+                $(this).parent().parent().show();
+            });
     });
     $('#search').on("keyup", function () {
         var q = $('#search').val();
