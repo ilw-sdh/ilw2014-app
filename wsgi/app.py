@@ -129,6 +129,7 @@ def show_main():
     return render_template('main.html')
 '''
 @app.route("/friends")
+@login_required
 def show_friends():
     return render_template('friends.html', friends = fb.get_decorated_friends())
 
