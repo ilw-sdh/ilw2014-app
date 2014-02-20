@@ -6,7 +6,6 @@
                     {dest: "Bristol", price: "20", carrier: "Joe's Hardware"}]];
 */
 var flights;
-var keys = [];
 var ready = false;
 //get flight data
 $.get( "/top_flights", function( data ) {
@@ -38,7 +37,7 @@ function reset_modal() {
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
-    var data = flights[keys[city_id]];
+    var data = flights[city_id];
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
     data.quotes.forEach(function (entry) { 
