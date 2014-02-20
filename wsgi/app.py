@@ -4,6 +4,7 @@ from urllib import urlencode
 from urllib2 import urlopen
 from collections import defaultdict
 from functools import wraps
+from sets import Set
 import json
 import random
 import math
@@ -39,8 +40,22 @@ def get_airports():
             airports[airport]['name']  = utils.iata_to_name(airport)
             airports[airport]['friend_score'] += 10 if friend['is_close_friend'] else 1
             airports[airport]['friends'].append(friend)
+            #airports[airport]['quotes'] = skyscanner.find_cheapest_quotes("UK", airport)
     if 'EDI' in airports: del airports['EDI']
     return airports
+
+def get_friends():
+    friends = {}
+    for k, v in get_decorated_top_airports().iteritems():
+        for f in v['friends']:
+            cheapest_quote = v['cheapest_quote']
+            if f['uid'] in friends:
+                if cheapest_quote['MinPrice'] < friends[f['uid']]['cheapest_quote']['MinPrice']:
+                    friends[f['uid']]['cheapest_quote'] = cheapest_quote
+            else:
+                friends[f['uid']] = f
+                friends[f['uid']]['cheapest_quote'] = cheapest_quote
+    return friends.values()
 
 def get_top_airports():
     airports = get_airports()
@@ -88,7 +103,7 @@ def top_flights():
 @app.route("/friends_api")
 @login_required
 def friends_api():
-    return json.dumps(fb.get_decorated_friends(), indent=4)
+    return json.dumps(get_friends(), indent=4)
 
 @app.route("/")
 def hello():
