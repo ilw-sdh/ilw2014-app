@@ -85,6 +85,11 @@ def index():
 def top_flights():
     return json.dumps(get_top_airports_by_index(), indent=4)
 
+@app.route("/friends")
+@login_required
+def friends():
+    return json.dumps(fb.get_decorated_friends(), indent=4)
+
 @app.route("/")
 def hello():
     if not ('oauth_token' in session):
