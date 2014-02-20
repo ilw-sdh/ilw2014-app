@@ -14,19 +14,13 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
     
-    $('#tab-main a').click(function (e) {
-	e.preventDefault()
-	$(this).tab('show')
-    })
-    $('#tab-friends a').click(function (e) {
-	e.preventDefault()
-	$(this).tab('show')
-    })
+    $('#chooser a').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+    if($("#tab-main").hasClass("active")){ $("#tab-main").addClass("hidden");}
+        else { $("#tab-main").removeClass("hidden"); }
+    });
 
-    $('#myTab a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
-    })
     $(".btn-modal").on("click", function () {
         //set modal to loading!
         if(ready) {
@@ -76,7 +70,7 @@ function prepare_flight(dest) {
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class='date'><div class='date-tooltip' data-toggle='tooltip' data-placement='auto left' title='"+rel_date+"'></div>"+date+"</td>";
-    r += "<td class='carrier'>"+dest.InboundLeg.CarrierIds[0]+"</td>";
+    r += "<td class='carrier'>"+dest.InboundLeg.Carrier+"</td>";
     r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
     r += "</tr>";
     return r;
