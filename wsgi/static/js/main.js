@@ -44,6 +44,7 @@ function populate_modal(city_id) {
     //this gets all relevant data for the modal
     var data = flights[city_id];
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
+    $("#skyscanner-url").attr('href', flights[city_id]['url']);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
     data.quotes.forEach(function (entry) { 
         $("#flight-data tr:last").after(prepare_flight(entry)); 

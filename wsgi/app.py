@@ -85,6 +85,11 @@ def index():
 def top_flights():
     return json.dumps(get_top_airports_by_index(), indent=4)
 
+@app.route("/top_flights")
+@login_required
+def top_flights():
+    return json.dumps(get_top_airports_by_index(), indent=4)
+
 @app.route("/friends_api")
 @login_required
 def friends_api():
