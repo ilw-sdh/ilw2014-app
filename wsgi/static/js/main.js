@@ -43,6 +43,7 @@ $(document).ready( function () {
             } else {
                 $(this).parent().parent().hide();
             }
+            console.log(any_selected);
         });
         $(this).toggleClass("selected");
     });
