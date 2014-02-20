@@ -42,7 +42,7 @@ $(document).ready( function () {
             } else {
                 $(this).parent().parent().hide();
             }
-        }
+        });
         console.log(q);
     });
     $('#search').on("keyup", function () {
