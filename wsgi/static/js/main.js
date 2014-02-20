@@ -33,7 +33,7 @@ $(document).ready( function () {
         }
     });
 
-    $('#search').on("change", function () {
+    $('#search').on("keyup", function () {
         var q = $('#search').val();
         $(".friend-name").each(function () {
             if ($(this).text().toLowerCase().indexOf(q.toLowerCase()) != -1) {
