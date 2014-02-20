@@ -16,11 +16,11 @@ $(document).ready( function () {
     
     $('#chooser a').click(function (e) {
 	e.preventDefault();
+	$(this).tab('show');
     if(!$("#tab-main").hasClass("active")){ $("#tab-main").removeClass("hide");}
         else { $("#tab-main").addClass("hide"); }
     if(!$("#tab-friends").hasClass("active")){ $("#tab-friends").removeClass("hide");}
         else { $("#tab-friends").addClass("hide"); }
-	$(this).tab('show');
     });
 
     $(".btn-modal").on("click", function () {
