@@ -10,7 +10,7 @@ def fql(q):
     return json.loads(raw)['data']
 
 def get_friends():
-    friends = fql('SELECT uid, name, pic, current_location.latitude, current_location.longitude, current_location.country FROM user  WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me()) AND current_location')    
+    friends = fql('SELECT uid, name, pic, current_location.latitude, current_location.longitude, current_location.country, current_location.city FROM user  WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me()) AND current_location')    
     return friends
 
 def get_close_friend_ids():
