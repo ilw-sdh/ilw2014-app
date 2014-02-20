@@ -34,7 +34,7 @@ $(document).ready( function () {
     });
 
     $(".friendlist tr").on("click", function() {
-        $(this).toggleClass("active");
+        $(this).toggleClass("selected");
     });
     $('#search').on("keyup", function () {
         var q = $('#search').val();
