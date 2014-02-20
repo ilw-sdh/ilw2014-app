@@ -18,11 +18,10 @@ $(document).ready( function () {
 	e.preventDefault();
     if($("#tab-main").hasClass("active")){ $("#tab-main").addClass("hide");}
         else { $("#tab-main").removeClass("hide"); }
-    });
     if($("#tab-friends").hasClass("active")){ $("#tab-friends").addClass("hide");}
         else { $("#tab-friends").removeClass("hide"); }
-    });
 	$(this).tab('show');
+    });
 
     $(".btn-modal").on("click", function () {
         //set modal to loading!
