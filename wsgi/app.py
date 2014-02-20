@@ -75,8 +75,9 @@ def login_required(f):
 @app.route("/index")
 @login_required
 def index():
-    return "Index w00t"
-    #return render_template('index.html', me = facebook.get('/me'), flights = get_top_flights())
+    #return "Index w00t"
+    #return render_template('main.html', me = facebook.get('/me'), flights = get_top_flights())
+    return render_template('main.html')
 
 @app.route("/top_flights")
 @login_required
@@ -85,7 +86,7 @@ def top_flights():
 
 @app.route("/")
 def hello():
-    return render_template('hello.html')
+    return render_template('home.html')
 
 @app.route('/login')
 def login():
@@ -109,7 +110,7 @@ def facebook_authorized(resp):
         )
     session['oauth_token'] = (resp['access_token'], '')
     return redirect(url_for('index'))
-
+'''
 @app.route("/home")
 def show():
     return render_template('home.html')
@@ -117,7 +118,7 @@ def show():
 @app.route("/main")
 def show_main():
     return render_template('main.html')
-
+'''
 @app.route("/friends")
 def show_friends():
     return render_template('friends.html')
