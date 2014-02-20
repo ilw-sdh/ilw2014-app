@@ -95,9 +95,9 @@ function prepare_flight(dest) {
     var rel_date = moment(dest.InboundLeg.DepartureDate).fromNow();
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class='date'><div class='date-tooltip' data-toggle='tooltip' data-placement='auto left' title='"+rel_date+"'></div>"+date+"</td>";
-    r += "<td class='carrier'>"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
+    r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"auto left\" title=\""+rel_date+"\"></div>"+date+"</td>";
+    r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
+    r += "<td class=\"price\"><span class=\"label label-default\">&pound;"+dest.MinPrice+"</td>";
     r += "</tr>";
     return r;
 }
