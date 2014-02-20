@@ -18,9 +18,9 @@ $(document).ready( function () {
 	e.preventDefault();
 	$(this).tab('show')
     if($("#tab-main").hasClass("active"){
-        $("#tab-main").removeClass("hide");
+        $("#tab-main").removeClass("hidden");
     }else {
-        $("#tab-main").addClass("hide");
+        $("#tab-main").addClass("hidden");
     }
     });
 
