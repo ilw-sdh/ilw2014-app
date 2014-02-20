@@ -83,11 +83,14 @@ def index():
 @app.route("/top_flights")
 @login_required
 def top_flights():
-    return json.dumps(get_top_airports_by_index())
+    return json.dumps(get_top_airports_by_index(), indent=4)
 
 @app.route("/")
 def hello():
-    return render_template('home.html')
+    if not ('oauth_token' in session):
+        return render_template('home.html')
+    else:
+        return redirect('/index')
 
 @app.route('/login')
 def login():
@@ -127,4 +130,3 @@ def show_friends():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-
