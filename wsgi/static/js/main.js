@@ -16,10 +16,10 @@ $(document).ready( function () {
     
     $('#chooser a').click(function (e) {
 	e.preventDefault();
-    if($("#tab-main").hasClass("active")){ $("#tab-main").addClass("hide");}
-        else { $("#tab-main").removeClass("hide"); }
-    if($("#tab-friends").hasClass("active")){ $("#tab-friends").addClass("hide");}
-        else { $("#tab-friends").removeClass("hide"); }
+    if(!$("#tab-main").hasClass("active")){ $("#tab-main").removeClass("hide");}
+        else { $("#tab-main").addClass("hide"); }
+    if(!$("#tab-friends").hasClass("active")){ $("#tab-friends").removeClass("hide");}
+        else { $("#tab-friends").addClass("hide"); }
 	$(this).tab('show');
     });
 
