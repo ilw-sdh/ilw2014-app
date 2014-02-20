@@ -46,6 +46,7 @@ function populate_data() {
     for (var data in flights) {
         keys.push(data);
     }
+    $("#Loading-Content").addClass("hidden");
     $("#first-location h1").html(flights[keys[0]].name[1] + "<br />&pound;"+flights[keys[0]].cheapest_quote.MinPrice);
     $("#first-location p").html("Go and see <em>"+flights[keys[0]].friends[0].name+"</em> in "+flights[keys[0]].name[1]+", "+flights[keys[0]].name[2]);
     $("#first-location button").attr("location", 0);
