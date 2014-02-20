@@ -119,19 +119,6 @@ def facebook_authorized(resp):
         )
     session['oauth_token'] = (resp['access_token'], '')
     return redirect(url_for('index'))
-'''
-@app.route("/home")
-def show():
-    return render_template('home.html')
-
-@app.route("/main")
-def show_main():
-    return render_template('main.html')
-'''
-@app.route("/friends")
-@login_required
-def show_friends():
-    return render_template('friends.html', friends = fb.get_decorated_friends())
 
 if __name__ == "__main__":
     app.debug = True
