@@ -15,7 +15,10 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
 
-    $("#test").tooltip();
+    $('#myTab a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+    })
     $(".btn-modal").on("click", function () {
         //set modal to loading!
         if(ready) {
