@@ -36,6 +36,13 @@ $(document).ready( function () {
     $(".friendlist tr").on("click", function() {
         $(this).toggleClass("selected");
         var q = $(this).children(":last").children(".friend-location").text();
+        $(".friend-location").each(function () {
+            if($(this).text().toLowerCase().indexOf(q.toLowerCase()) != -1) {
+                $(this).parent().parent().show();
+            } else {
+                $(this).parent().parent().hide();
+            }
+        }
         console.log(q);
     });
     $('#search').on("keyup", function () {
