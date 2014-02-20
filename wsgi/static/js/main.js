@@ -15,8 +15,13 @@ $.get( "/top_flights", function( data ) {
 $(document).ready( function () {
     
     $('#chooser a').click(function (e) {
-	e.preventDefault()
+	e.preventDefault();
 	$(this).tab('show')
+    if($("#tab-main").hasClass("active"){
+        $("#tab-main").removeClass("hide");
+    }else {
+        $("#tab-main").addClass("hide");
+    }
     });
 
     $(".btn-modal").on("click", function () {
