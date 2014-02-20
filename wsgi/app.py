@@ -130,7 +130,7 @@ def show_main():
 '''
 @app.route("/friends")
 def show_friends():
-    return render_template('friends.html')
+    return render_template('friends.html', friends = fb.get_decorated_friends())
 
 if __name__ == "__main__":
     app.debug = True

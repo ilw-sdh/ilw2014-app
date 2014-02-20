@@ -13,6 +13,15 @@ $.get( "/top_flights", function( data ) {
     populate_data();
 });
 $(document).ready( function () {
+    
+    $('#tab-main a').click(function (e) {
+	e.preventDefault()
+	$(this).tab('show')
+    })
+    $('#tab-friends a').click(function (e) {
+	e.preventDefault()
+	$(this).tab('show')
+    })
 
     $('#myTab a').click(function (e) {
           e.preventDefault()
