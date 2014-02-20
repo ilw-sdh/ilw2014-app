@@ -15,6 +15,8 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
 
+    $("td[data-toggle*='tooltip']").tooltip();
+    $("#test").tooltip();
     $(".btn-modal").on("click", function () {
         //set modal to loading!
         if(ready) {
@@ -64,7 +66,7 @@ function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class='date'>"+date+"</td>";
+    r += "<td class='date'data-toggle='tooltip' data-placement='top' title='hello'>"+date+"</td>";
     r += "<td class='carrier'>"+dest.OutboundLeg.CarrierIds[0]+"</td>";
     r += "<td class='price'><button class='btn btn-success'>&pound;"+dest.MinPrice+"</button></td>";
     r += "</tr>";
