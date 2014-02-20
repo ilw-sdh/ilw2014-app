@@ -35,7 +35,7 @@ $(document).ready( function () {
 
     $(".friendlist tr").on("click", function() {
         $(this).toggleClass("selected");
-        var q = $(this).children(".friend-location");
+        var q = $(this).children(":last").children(".friend-location").text();
         console.log(q);
     });
     $('#search').on("keyup", function () {
