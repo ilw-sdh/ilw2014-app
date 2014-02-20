@@ -97,7 +97,7 @@ function prepare_flight(dest) {
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"auto left\" title=\""+rel_date+"\"></div>"+date+"</td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td class=\"price\"><span class=\"label label-default\">&pound;"+dest.MinPrice+"</td>";
+    r += "<td class=\"price\"><strong>&pound;"+dest.MinPrice+"</strong></td>";
     r += "</tr>";
     return r;
 }
