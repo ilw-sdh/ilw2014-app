@@ -33,6 +33,17 @@ $(document).ready( function () {
         }
     });
 
+    $('#search').on("change", function () {
+        var q = $('#search').val();
+        $(".friend-name").each(function () {
+            if ($(this).text().toLowerCase().indexOf(q.toLowerCase()) != -1) {
+                $(this).parent().parent().show();
+            }
+            else {
+                $(this).parent().parent().hide();
+            }
+        });
+    });
 });
 function reset_modal() {
     //resets the modal to a loading screen
