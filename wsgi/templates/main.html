@@ -60,7 +60,7 @@
 	 </div>
 	 
 	 <div class="navbar-collapse collapse">
-           <form class="navbar-form navbar-right" role="form">
+           <form class="navbar-form navbar-right" role="form" action="/logout">
              <button type="button" class="btn btn-danger">Log Out</button>
            </form>
          </div>
@@ -87,75 +87,153 @@
        </nav>
 
        <div class="list-row">
-
-	 <div id="Loading-Content" class="col-md-4 col-md-offset-4">
-	   <div class="block">
-	     <div class="bit bit-image">
-	       <img src="http://app-ilw.rhcloud.com/static/img/bg-image2.jpg"> 
-	       <div class="bit-image-caption">
-		 <h1 data-toggle='tooltip'>Loading Flights...</h1>
-	       </div>
-	     </div>
-	     <div class="padder">
-	       <div class="progress progress-striped active">
-		 <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-		   <span class="sr-only">Loading Flights...</span>
+	 
+<!-- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  -->
+	 
+	 <div id="tab-main">
+	   
+	   <div id="Loading-Content" class="col-md-4 col-md-offset-4">
+	     <div class="block">
+	       <div class="bit bit-image">
+		 <img src="http://app-ilw.rhcloud.com/static/img/bg-image2.jpg"> 
+		 <div class="bit-image-caption">
+		   <h1 data-toggle='tooltip'>Loading Flights...</h1>
 		 </div>
 	       </div>
-	       <p>Get the best deals. Total coverage, no bias, no hidden costs. </p>
-	     </div>
-	   </div>
-	 </div>
-
-	 <!-- Col 1 -->
-	 <div id="first-location" class="hidden col-md-4">
-	   <div class="block">
-	     <div class="bit bit-image">
-	       <img src="http://app-ilw.rhcloud.com/static/img/london.jpg">
-	       <div class="bit-image-caption">
-		 <h1>Loading</h1>
+	       <div class="padder">
+		 <div class="progress progress-striped active">
+		   <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+		     <span class="sr-only">Loading Flights...</span>
+		   </div>
+		 </div>
+		 <p>Get the best deals. Total coverage, no bias, no hidden costs. </p>
 	       </div>
 	     </div>
-	     <div class="padder">
-	       <p>Loading...</p>
-	       <button type="button" data-toggle="modal" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
+	   </div>
+	   
+	   <!-- Col 1 -->
+	   <div id="first-location" class="hidden col-md-4">
+	     <div class="block">
+	       <div class="bit bit-image">
+		 <img src="http://app-ilw.rhcloud.com/static/img/london.jpg">
+		 <div class="bit-image-caption">
+		   <h1>Loading</h1>
+		 </div>
+	       </div>
+	       <div class="padder">
+		 <p>Loading...</p>
+		 <button type="button" data-toggle="modal" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
+	       </div>
 	     </div>
 	   </div>
-	 </div>
-
-	 <!-- Col 2 -->
-	 <div id="second-location" class="hidden col-md-4">
-	   <div class="block">
-	     <div class="bit bit-image">
-	       <img src="http://app-ilw.rhcloud.com/static/img/paris.jpg">
-	       <div class="bit-image-caption">
+	   
+	   <!-- Col 2 -->
+	   <div id="second-location" class="hidden col-md-4">
+	     <div class="block">
+	       <div class="bit bit-image">
+		 <img src="http://app-ilw.rhcloud.com/static/img/paris.jpg">
+		 <div class="bit-image-caption">
+		   <h1>Loading...</h1>
+		 </div>
+	       </div>
+	       <div class="padder">
+		 <p>Loading...</p>
+		 <button type="button" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
+	       </div>
+	     </div>
+	   </div>
+	   
+	   <!-- Col 3 -->
+	   <div id="third-location" class="hidden col-md-4">
+	     <div class="block">
+	       <div class="bit bit-image">
+		 <img src="http://app-ilw.rhcloud.com/static/img/new-york.jpg">
+		 <div class="bit-image-caption">
 		 <h1>Loading...</h1>
+		 </div>
+	       </div>
+	       <div class="padder">
+		 <p>Loading...</p>
+		 <button type="button" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
 	       </div>
 	     </div>
-	     <div class="padder">
-	       <p>Loading...</p>
-	       <button type="button" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
+	 </div>
+	   
+	 </div>
+	 
+       </div><!-- #tab-main -->
+       
+<!-- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  -->
+       
+       <div id="tab-friends">
+	 
+	 <div class="list-row">
+	   
+	   <div class="col-xs-12">
+	     <div class="block">
+	       <table class="friendlist">
+		 <tbody>
+		   <tr class="selected">
+		     <td>
+		       <div class="avatar">
+			   <img src="https://graph.facebook.com/angus.pearson.5/picture?width=100&height=100">
+		       </div>
+		     </td>
+		     <td>
+		       <span class="friend-name">Angus Pearson</span>
+		       <span class="friend-location">Edinburgh</span>
+		     </td>
+		   </tr>
+		 
+		 
+		   <tr>
+		     <td>
+		       <div class="avatar">
+			 <img src="https://graph.facebook.com/hamhut1066/picture?width=100&height=100">
+		       </div>
+		     </td>
+		     <td>
+		       <span class="friend-name">Hamish Hutchings</span>
+		       <span class="friend-location">Edinburgh</span>
+		     </td>
+		   </tr>
+
+
+		   <tr>
+		     <td>
+		       <div class="avatar">
+			 <img src="https://graph.facebook.com/henri.maurer/picture?width=100&height=100">
+		       </div>
+		     </td>
+		     <td>
+		       <span class="friend-name">Henri Maurer</span>
+		       <span class="friend-location">Edinburgh</span>
+		     </td>
+		   </tr>
+		 </tbody>
+	       </table>
 	     </div>
 	   </div>
-	 </div>
+	   
 
-	 <!-- Col 3 -->
-	 <div id="third-location" class="hidden col-md-4">
-	   <div class="block">
-	     <div class="bit bit-image">
-	       <img src="http://app-ilw.rhcloud.com/static/img/new-york.jpg">
-	       <div class="bit-image-caption">
-		 <h1>Loading...</h1>
+	   <div class="list-row">
+	     
+	   
+	     <div class="col-xs-12">
+	       <div class="block">
+		 <div class="bit bit-green">
+		   <h1>Get your flight deals now:</h1>
+		   <button type="button" class="btn btn-success btn-lg">Search Flights</button>
+		 </div>
 	       </div>
 	     </div>
-	     <div class="padder">
-	       <p>Loading...</p>
-	       <button type="button" class="btn-modal btn btn-success btn-block btn-lg">Book Now</button>
-	     </div>
+	     
+	     
 	   </div>
 	 </div>
-
        </div>
+
+<!-- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  -->
 
      </div><!-- .container -->
      
