@@ -4,10 +4,10 @@
  * Bobby Tables
  * Front End CSS
  *
- * COLORUS:
+ * COLOURS:
  * Subtle        - #E6FADF
  * Green Accent  - #CEF062
- * Green         - #ABED32
+ * Green         - #ABED32 - Darl  : #9AD52D
  * Purple Accent - #8359A3 - Light : #9B7AB5 - V. Light : #B49BC7
  * Purple        - #4F3B75
  * Red           - #C75141
@@ -29,17 +29,32 @@ h1, h2, h3, h4, h5, h6 {
 /** ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  **/
 
 
+.avatar {
+    width: 111px;
+    height: 111px;
+    overflow: hidden;
+    border: 4px solid #CCC;
+    border-radius: 55.5px;
+}
+
+    .avatar button {
+	border: 0;
+	padding: 0;
+	margin: 0;
+    }
+
+
 .bit {
     margin: 0;
     margin-bottom: 15px;
     padding: 15px 15px;
-    background: #E6FADF;
+    background: #CCE3CF;
     color: #000;
     font-size: 150%;
 }
 
     .bit-green {
-	background: #CEF062;
+	background: #7AB57E;
     }
     .bit-purple {
 	background: #8359A3;
@@ -53,6 +68,25 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 120%;
     }
 
+    .bit-image {
+	padding: 0;
+	color: #FFF;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	height: 200px;
+    }
+
+        .bit-image img {
+	    width: 100%;
+	    height: 200px;
+	}
+
+	.bit-image .bit-image-caption {
+	    margin-top: -200px;
+	    padding: 15px;
+	    text-align: center;
+	    font-size: 200%;
+	}
+
 
 .block {
     background: #FFF;
@@ -65,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .btn-facebook {
+    color: #FFF !important;
     background: #3B5998;
     border-color: #2F4779;
     max-heigth: 34px;
@@ -106,13 +141,55 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.friendlist {
+    width: 100%;
+}
+
+    .friendlist td {
+	border-bottom: 2px solid #EEE;
+	padding: 5px 20px;
+    }
+
+    .friendlist tr.selected,
+    .friendlist tr:hover {
+	background: #CCE3CF;
+    }
+
+    .friendlist tr.selected .avatar,
+    .friendlist tr:hover .avatar {
+	border-color: #7AB57E;
+    }
+
+    .friendlist tr.selected td,
+    .friendlist tr:hover td {
+	border-color: #7AB57E;
+    }
+
+.friend-name {
+    font-family: 'Roboto Slab', Times, serif;
+    font-weight: lighter;
+    font-size: 20px;
+    display: block;
+}
+
+.friend-location {
+    color: #888;
+}
+
+
+.list-container {
+    padding: 0 !important;
+}
+
+
 .main {
     margin-top: 20px;
 }
 
 
 .navbar-brand {
-    font-family: 'Roboto Slab', Times, serif;
+    font-family: 'Roboto', Helvetica, Helvetica-Neue, serif;
+    font-weight: bold;
 }
 
 .navbar-purple {
@@ -150,6 +227,60 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 
+.nav-touch {
+    list-style: none;
+    background: #F8F8F8;
+}
+
+    .nav-touch > li {
+	position: relative;
+	display: block;
+	float: left;
+	border-bottom: 2px solid #CCC;
+    }
+
+    .nav-touch > li > a {
+	border-bottom: 4px solid transparent;
+	color: #000;
+    }
+
+    .nav-touch > li > a:hover,
+    .nav-touch > li > a:focus {
+	border-bottom: 4px solid #DDD;
+	background: #FAFAFA;
+    }
+
+    .nav-touch > li.active {
+	border-bottom: 2px solid #8359A3;
+    }
+
+    .nav-touch > li.active > a,
+    .nav-touch > li.active > a:hover, 
+    .nav-touch > li.active > a:focus {
+	color: #000;
+	background: #FFF;
+	border-bottom: 4px solid #9B7AB5;
+    }
+
+    .nav-touch.nav-justified {
+	width: 100%;
+	border-bottom: 0;
+	box-sizing: border-box;
+    }
+
+    .nav-touch.nav-justified > li {
+	float: none;
+    }
+
+    .nav-touch.nav-justified > li {
+	display: table-cell;
+	width: 1%;
+    }
+
+    .nav-justified > li > a {
+	margin-bottom: 0px;
+	text-align: center;
+    }
 
 .padder {
     padding: 15px 15px;

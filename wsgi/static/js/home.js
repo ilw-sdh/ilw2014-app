@@ -2,12 +2,12 @@
 
 $( document ).ready( function () {
 
-    $(".col-md-4").on("mouseenter",function () {
+    /*$(".col-md-4").on("mouseenter",function () {
         $(this).addClass("text-muted");
     });
     $(".col-md-4").on("mouseleave",function () {
         $(this).removeClass("text-muted");
-    });
+    });*/
     //content run on document ready
     $("#content").text("loading");
     fs = populate_flights();
