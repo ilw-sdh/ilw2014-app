@@ -17,7 +17,7 @@ $(document).ready( function () {
     $('#chooser a').click(function (e) {
 	e.preventDefault();
 	$(this).tab('show');
-    if($("#tab-main").hasClass("active"){ $("#tab-main").removeClass("hidden");}
+    if($("#tab-main").hasClass("active")){ $("#tab-main").removeClass("hidden");}
         else { $("#tab-main").addClass("hidden"); }
     });
 
