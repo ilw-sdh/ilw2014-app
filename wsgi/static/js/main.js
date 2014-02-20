@@ -33,6 +33,11 @@ $(document).ready( function () {
         }
     });
 
+    $(".friendlist tr").on("click", function() {
+        $(this).toggleClass("selected");
+        var q = $(this).children(".friend-location");
+        console.log(q);
+    });
     $('#search').on("keyup", function () {
         var q = $('#search').val();
         $(".friend-name").each(function () {
