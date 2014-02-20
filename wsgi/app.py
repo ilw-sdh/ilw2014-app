@@ -32,19 +32,19 @@ def get_facebook_token(token=None):
     return session.get('oauth_token')
 
 def get_airports():
-    airports = defaultdict(lambda: { 'score': 0, 'friends': [] }, {})
+    airports = defaultdict(lambda: { 'friend_score': 0, 'friends': [] }, {})
     for friend in fb.get_decorated_friends():
         friend_airports = utils.around_by_country(friend['current_location']['country'], friend['current_location']['latitude'], friend['current_location']['longitude'])
         for airport in friend_airports:
             airports[airport]['name']  = utils.iata_to_name(airport)
-            airports[airport]['score'] += 10 if friend['is_close_friend'] else 1
+            airports[airport]['friend_score'] += 10 if friend['is_close_friend'] else 1
             airports[airport]['friends'].append(friend)
     if 'EDI' in airports: del airports['EDI']
     return airports
 
 def get_top_airports():
     airports = get_airports()
-    airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['score'], reverse=True)
+    airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['friend_score'], reverse=True)
     return dict(airport_tuples[0:20])
 
 def get_decorated_top_airports():
@@ -53,7 +53,7 @@ def get_decorated_top_airports():
         try:
             v['quotes'] = skyscanner.find_cheapest_quotes("UK", k)
             v['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
-            v['index'] = v['score'] # / math.log(v['cheapest_quote']['MinPrice'])
+            v['index'] = v['friend_score'] # / math.log(v['cheapest_quote']['MinPrice'])
             v['url'] = skyscanner.url_for_journey("UK", k)
         except: pass
     airports = dict((k, v) for k, v in airports.iteritems() if 'quotes' in v and v['quotes'])
@@ -85,9 +85,9 @@ def index():
 def top_flights():
     return json.dumps(get_top_airports_by_index(), indent=4)
 
-@app.route("/friends")
+@app.route("/friends_api")
 @login_required
-def friends():
+def friends_api():
     return json.dumps(fb.get_decorated_friends(), indent=4)
 
 @app.route("/")
