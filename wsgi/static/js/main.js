@@ -45,10 +45,6 @@ $(document).ready( function () {
             }
         });
         $(this).toggleClass("selected");
-        if(!any_selected) {
-            $(".friend-location").each(function () {
-                $(this).parent().parent().show();
-            });
         }
     });
     $('#search').on("keyup", function () {
