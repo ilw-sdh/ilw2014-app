@@ -62,7 +62,7 @@ def get_decorated_top_airports():
 def get_top_airports_by_index():
     airports = get_decorated_top_airports()
     airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['index'], reverse=True)
-    return dict(airport_tuples[0:6])
+    return map(lambda x: x[1], airport_tuples[0:6])
 
 
 def login_required(f):
