@@ -49,12 +49,15 @@ function populate_data() {
     $("#first-location h1").html(flights[keys[0]].name[1] + "<br />&pound;"+flights[keys[0]].cheapest_quote.MinPrice);
     $("#first-location p").html("Go and see <em>"+flights[keys[0]].friends[0].name+"</em> in "+flights[keys[0]].name[1]+", "+flights[keys[0]].name[2]);
     $("#first-location button").attr("location", 0);
+    $("#first-location").removeClass("hidden");
     $("#second-location h1").html(flights[keys[1]].name[1] + "<br />&pound;"+flights[keys[1]].cheapest_quote.MinPrice);
     $("#second-location p").html("You have <em>"+flights[keys[1]].friends.length+"</em> friends near "+flights[keys[1]].name[1]);
     $("#second-location button").attr("location", 1);
+    $("#second-location").removeClass("hidden");
     $("#third-location h1").html(flights[keys[2]].name[1] + "<br />&pound;"+flights[keys[2]].cheapest_quote.MinPrice);
     $("#third-location p").html("Flights available to go and see <em>"+flights[keys[2]].friends[0].name+"</em> in "+flights[keys[2]].name[1]);
     $("#third-location button").attr("location", 2);
+    $("#third-location").removeClass("hidden");
 }
 function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
