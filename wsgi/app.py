@@ -53,7 +53,8 @@ def get_decorated_top_airports():
         try:
             v['quotes'] = skyscanner.find_cheapest_quotes("UK", k)
             v['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, v['quotes'])
-            v['index'] = v['score'] / math.log(v['cheapest_quote']['MinPrice'])
+            v['index'] = v['score'] # / math.log(v['cheapest_quote']['MinPrice'])
+            v['url'] = skyscanner.url_for_journey("UK", k)
         except: pass
     airports = dict((k, v) for k, v in airports.iteritems() if 'quotes' in v and v['quotes'])
     return airports
@@ -61,7 +62,7 @@ def get_decorated_top_airports():
 def get_top_airports_by_index():
     airports = get_decorated_top_airports()
     airport_tuples = sorted(airports.items(), key=lambda tup: tup[1]['index'], reverse=True)
-    return dict(airport_tuples[0:5])
+    return map(lambda x: x[1], airport_tuples[0:6])
 
 
 def login_required(f):
@@ -75,17 +76,26 @@ def login_required(f):
 @app.route("/index")
 @login_required
 def index():
-    return "Index w00t"
-    #return render_template('index.html', me = facebook.get('/me'), flights = get_top_flights())
+    #return "Index w00t"
+    #return render_template('main.html', me = facebook.get('/me'), flights = get_top_flights())
+    return render_template('main.html')
 
 @app.route("/top_flights")
 @login_required
 def top_flights():
-    return json.dumps(get_top_airports_by_index())
+    return json.dumps(get_top_airports_by_index(), indent=4)
+
+@app.route("/friends")
+@login_required
+def friends():
+    return json.dumps(fb.get_decorated_friends(), indent=4)
 
 @app.route("/")
 def hello():
-    return render_template('hello.html')
+    if not ('oauth_token' in session):
+        return render_template('home.html')
+    else:
+        return redirect('/index')
 
 @app.route('/login')
 def login():
@@ -109,7 +119,7 @@ def facebook_authorized(resp):
         )
     session['oauth_token'] = (resp['access_token'], '')
     return redirect(url_for('index'))
-
+'''
 @app.route("/home")
 def show():
     return render_template('home.html')
@@ -117,7 +127,7 @@ def show():
 @app.route("/main")
 def show_main():
     return render_template('main.html')
-
+'''
 @app.route("/friends")
 def show_friends():
     return render_template('friends.html')
@@ -125,4 +135,3 @@ def show_friends():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-

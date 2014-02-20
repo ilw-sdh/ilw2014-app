@@ -17,5 +17,8 @@ def find_cheapest_quotes(origin, destination):
 	data = get("/browsequotes/v1.0/GB/GBP/en-GB/%s/%s/anytime/anytime" % (origin, destination))
 	return data['Quotes']
 
+def url_for_journey(origin, destination):
+	return API_ROOT + "/referral/v1.0/GB/GBP/en-GB/%s/%s/anytime/anytime" % (origin, destination)
+
 	#best_quote = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, data['Quotes'])
 	#best_quote['url'] = get_quote_url(best_quote)
