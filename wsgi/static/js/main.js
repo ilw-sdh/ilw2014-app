@@ -55,7 +55,7 @@ function populate_data() {
     ready = true;
     $("#Loading-Content").addClass("hidden");
     $("#first-location h1").html(flights[0].name[1] + "<br />&pound;"+flights[0].cheapest_quote.MinPrice);
-    $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name"</em> and " = (flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
+    $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name+"</em> and "+(flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
     $("#first-location button").attr("location", 0);
     $("#first-location").removeClass("hidden");
     $("#second-location h1").html(flights[1].name[1] + "<br />&pound;"+flights[1].cheapest_quote.MinPrice);
