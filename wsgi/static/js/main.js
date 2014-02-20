@@ -45,7 +45,7 @@ $(document).ready( function () {
                 $(this).parent().parent().hide();
             }
         });
-        if(any_selected) {
+        if(!any_selected) {
             $(".friend-location").each(function () {
                 $(this).parent().parent().show();
             });
