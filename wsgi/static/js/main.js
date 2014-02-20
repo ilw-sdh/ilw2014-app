@@ -34,7 +34,6 @@ $(document).ready( function () {
     });
 
     $(".friendlist tr").on("click", function() {
-        $(this).toggleClass("selected");
         var any_selected = false;
         var q = $(this).children(":last").children(".friend-location").text();
         $(".friend-location").each(function () {
@@ -45,6 +44,7 @@ $(document).ready( function () {
                 $(this).parent().parent().hide();
             }
         });
+        $(this).toggleClass("selected");
         if(!any_selected) {
             $(".friend-location").each(function () {
                 $(this).parent().parent().show();
