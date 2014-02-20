@@ -63,47 +63,22 @@
 	 <div class="col-xs-12">
 	   <div class="block">
 	     <table class="friendlist">
-	       <tbody>
-		 <tr class="selected">
-		   <td>
-		     <div class="avatar">
-		       <button>
-			 <img src="https://graph.facebook.com/angus.pearson.5/picture?width=100&height=100">
-		       </button>
-		     </div>
-		   </td>
-		   <td>
-		     <span class="friend-name">Angus Pearson</span>
-		     <span class="friend-location">Edinburgh</span>
-		   </td>
-		 </tr>
+	       <tbody>	 
 		 
-		 
-		 
+		{% for friend in friends %}
 		 <tr>
 		   <td>
 		     <div class="avatar">
-		       <img src="https://graph.facebook.com/hamhut1066/picture?width=100&height=100">
+		       <img src="https://graph.facebook.com/{{ friend.uid }}/picture?type=large">
 		     </div>
 		   </td>
 		   <td>
-		     <span class="friend-name">Hamish Hutchings</span>
-		     <span class="friend-location">Edinburgh</span>
+		     <span class="friend-name">{{ friend.name }}</span>
+		     <span class="friend-location">{{ friend.current_location.country }}</span>
 		   </td>
 		 </tr>
+		 {% endfor %}
 
-
-		 <tr>
-		   <td>
-		     <div class="avatar">
-		       <img src="https://graph.facebook.com/henri.maurer/picture?width=100&height=100">
-		     </div>
-		   </td>
-		   <td>
-		     <span class="friend-name">Henri Maurer</span>
-		     <span class="friend-location">Edinburgh</span>
-		   </td>
-		 </tr>
 	       </tbody>
 	     </table>
 	   </div>
