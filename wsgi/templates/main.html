@@ -241,7 +241,7 @@
                      </td>
                      <td>
                        <span class="friend-name">{{ friend.name }}</span>
-                     <span class="friend-location">{{ friend.current_location.city }}, {{ friend.current_location.country }}</span>
+                     <span class="friend-location" data-country="{{ friend.current_location.country }}" data-lat="{{ friend.current_location.latitude }}" data-lon="{{ friend.current_location.longitude }}">{{ friend.current_location.city }}, {{ friend.current_location.country }}</span>
                      </td>
                    </tr>
                    {% endfor %}
