@@ -2,7 +2,6 @@
 var flights;
 var ready = false;
 var g_city_code;
-var friend_flights;
 //get flight data
 $.get( "/top_flights", function( data ) {
     flights = JSON.parse(data);
@@ -38,9 +37,10 @@ $(document).ready( function () {
             var country = $(this).find(".friend-location").attr("data-country");
             var lat = $(this).find(".friend-location").attr("data-lat");
             var lon = $(this).find(".friend-location").attr("data-lon");
-            $.get( "friend_flights?country="+country+"&lat="+lat+"&lon="+lon, function( data ) {
+            $.get( "/friend_flights?country="+country+"&lat="+lat+"&lon="+lon, function( data ) {
                 //do stuff!! probs using modals
-                friend_flights = JSON.parse(data);
+                var friend_flights = JSON.parse(data);
+                configure_modal(friend_flights.result);
             });
         }
     });
