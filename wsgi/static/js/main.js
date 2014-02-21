@@ -95,7 +95,7 @@ function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
     var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
-    var ss_date = moment(dest.OutboundLeg.DepartureDate).formay('YYYY-MM-DD');
+    var ss_date = moment(dest.OutboundLeg.DepartureDate).format('YYYY-MM-DD');
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
