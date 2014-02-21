@@ -40,6 +40,7 @@ def get_airports():
             airports[airport]['name']  = utils.iata_to_name(airport)
             airports[airport]['friend_score'] += 10 if friend['is_close_friend'] else 1
             airports[airport]['friends'].append(friend)
+            airports[airport]['iata'] = airport
             #airports[airport]['quotes'] = skyscanner.find_cheapest_quotes("UK", airport)
     if 'EDI' in airports: del airports['EDI']
     return airports
