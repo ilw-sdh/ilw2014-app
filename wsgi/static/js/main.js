@@ -15,6 +15,7 @@ $.get( "/top_flights", function( data ) {
 });
 $(document).ready( function () {
     
+    $("#tab-friends").addClass("hide");
     $('#chooser a').click(function (e) {
 	e.preventDefault();
 	$(this).tab('show');
