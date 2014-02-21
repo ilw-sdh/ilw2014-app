@@ -96,11 +96,12 @@ function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
     var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
+    var ss_date = moment(dest.OutboundLeg.DepartureDate).formay('YYYY-MM-DD');
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi//"+dest.OutboundLeg.DepartureDate+"/anytime\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
+    r += "<td class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/LHR/"+ss_date+"/anytime\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
     r += "</tr>";
     return r;
 }
