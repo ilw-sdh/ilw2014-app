@@ -57,13 +57,13 @@ function reset_modal() {
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
     $("#flight-data").html("<tr><th>Date</th><th>Airline</th><th>Fly Now!</th></tr>");
-    $("#skyscanner-url").prop("disabled", true);
+    $("#skyscanner-url").attr("disabled", true);
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
     var data = flights[city_id];
     g_city_code = data.iata;
-    $("#skyscanner-url").prop("disabled", false);
+    $("#skyscanner-url").attr("disabled", false);
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
     $("#skyscanner-url").attr('href', flights[city_id]['url']);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
