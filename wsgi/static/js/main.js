@@ -95,14 +95,20 @@ function populate_data() {
     $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name+"</em> and "+(flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
     $("#first-location button").attr("location", 0);
     $("#first-location").removeClass("hidden");
+    var x = 0;
+    $("#first-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
     $("#second-location h1").html(flights[1].name[1] + "<br />&pound;"+flights[1].cheapest_quote.MinPrice);
     $("#second-location p").html("You have <em>"+flights[1].friends.length+"</em> friends near "+flights[1].name[1]+", including <em>"+flights[1].friends[0].name+"</em>");
     $("#second-location button").attr("location", 1);
     $("#second-location").removeClass("hidden");
+    var x = 0;
+    $("#second-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
     $("#third-location h1").html(flights[2].name[1] + "<br />&pound;"+flights[2].cheapest_quote.MinPrice);
     $("#third-location p").html("Flights available to go and see <em>"+flights[2].friends[0].name+"</em> and "+(flights[2].friends.length -1)+" others in "+flights[2].name[1]);
     $("#third-location button").attr("location", 2);
     $("#third-location").removeClass("hidden");
+    var x = 0;
+    $("#third-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
 }
 function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
