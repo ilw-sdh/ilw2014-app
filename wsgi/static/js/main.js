@@ -96,7 +96,7 @@ function populate_data() {
     $("#first-location button").attr("location", 0);
     $("#first-location").removeClass("hidden");
     var x = 0;
-    $("#first-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic+"?type=square"); x++;});
+    $("#first-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
     $("#second-location h1").html(flights[1].name[1] + "<br />&pound;"+flights[1].cheapest_quote.MinPrice);
     $("#second-location p").html("You have <em>"+flights[1].friends.length+"</em> friends near "+flights[1].name[1]+", including <em>"+flights[1].friends[0].name+"</em>");
     $("#second-location button").attr("location", 1);
