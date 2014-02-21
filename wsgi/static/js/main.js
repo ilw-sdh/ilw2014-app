@@ -62,10 +62,24 @@ function reset_modal() {
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
     var data = flights[city_id];
-    g_city_code = data.iata;
+    configure_modal(data);
+    /*g_city_code = data.iata;
     $("#skyscanner-url").attr("disabled", false);
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
     $("#skyscanner-url").attr('href', flights[city_id]['url']);
+    $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
+    data.quotes.forEach(function (entry) { 
+        $("#flight-data tr:last").after(prepare_flight(entry)); 
+    });
+    $(".date-tooltip").tooltip();
+    g_city_code = undefined;*/
+}
+function configure_modal(data) {
+    //this function takes in an object of flights and respective data
+    g_city_code = data.iata;
+    $("#skyscanner-url").attr("disabled", false);
+    $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
+    $("#skyscanner-url").attr('href', data.url);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
     data.quotes.forEach(function (entry) { 
         $("#flight-data tr:last").after(prepare_flight(entry)); 
