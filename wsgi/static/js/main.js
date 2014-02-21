@@ -102,13 +102,13 @@ function populate_data() {
     $("#second-location button").attr("location", 1);
     $("#second-location").removeClass("hidden");
     var x = 0;
-    $("#second-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
+    $("#second-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[1].friends[x].pic); x++;});
     $("#third-location h1").html(flights[2].name[1] + "<br />&pound;"+flights[2].cheapest_quote.MinPrice);
     $("#third-location p").html("Flights available to go and see <em>"+flights[2].friends[0].name+"</em> and "+(flights[2].friends.length -1)+" others in "+flights[2].name[1]);
     $("#third-location button").attr("location", 2);
     $("#third-location").removeClass("hidden");
     var x = 0;
-    $("#third-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
+    $("#third-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[2].friends[x].pic); x++;});
 }
 function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
