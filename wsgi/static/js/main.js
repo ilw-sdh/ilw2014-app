@@ -97,8 +97,7 @@ function prepare_flight(dest) {
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     var ss_date = moment(dest.OutboundLeg.DepartureDate).format('YYYY-MM-DD');
     console.log(dest);
-    var city_code = "LHR";
-    //var city_code = dest.url.split("/")[10];
+    var city_code = dest.iata;
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
