@@ -1,10 +1,4 @@
 //main.js
-/*var flights = [[{dest: "Poland", price: "242", carrier: "Ryan Air"},
-                    {dest: "Poland", price: "60", carrier: "British Airways"},
-                    {dest: "Poland", price: "260", carrier: "Joe's Hardware"}],
-            [ {dest: "Bristol", price: "160", carrier: "British Airways"},
-                    {dest: "Bristol", price: "20", carrier: "Joe's Hardware"}]];
-*/
 var flights;
 var ready = false;
 var g_city_code;
@@ -40,11 +34,9 @@ $(document).ready( function () {
         if(ready) {
             reset_modal();
             $("#myModal").modal('toggle');
-            flights.forEach(function(f) {
-                if (f.name.indexOf($(this).children("span:last").text().split(",")[0])) {
-                    //this is to find the appropriate flight data
-                    console.log("city found");
-                }
+            var uid = "1234";
+            $.get( "friend_flights/?uid="+uid, function( data ) {
+                //do stuff!! probs using modals
             });
         }
     });
@@ -65,13 +57,29 @@ function reset_modal() {
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
     $("#flight-data").html("<tr><th>Date</th><th>Airline</th><th>Fly Now!</th></tr>");
+    $("#skyscanner-url").attr("disabled", true);
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
     var data = flights[city_id];
-    g_city_code = data.iata;
+    configure_modal(data);
+    /*g_city_code = data.iata;
+    $("#skyscanner-url").attr("disabled", false);
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
     $("#skyscanner-url").attr('href', flights[city_id]['url']);
+    $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
+    data.quotes.forEach(function (entry) { 
+        $("#flight-data tr:last").after(prepare_flight(entry)); 
+    });
+    $(".date-tooltip").tooltip();
+    g_city_code = undefined;*/
+}
+function configure_modal(data) {
+    //this function takes in an object of flights and respective data
+    g_city_code = data.iata;
+    $("#skyscanner-url").attr("disabled", false);
+    $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
+    $("#skyscanner-url").attr('href', data.url);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
     data.quotes.forEach(function (entry) { 
         $("#flight-data tr:last").after(prepare_flight(entry)); 
@@ -81,19 +89,26 @@ function populate_modal(city_id) {
 }
 function populate_data() {
     ready = true;
+    $("#chooser").removeClass("hidden");
     $("#Loading-Content").addClass("hidden");
     $("#first-location h1").html(flights[0].name[1] + "<br />&pound;"+flights[0].cheapest_quote.MinPrice);
     $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name+"</em> and "+(flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
     $("#first-location button").attr("location", 0);
     $("#first-location").removeClass("hidden");
+    var x = 0;
+    $("#first-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[0].friends[x].pic); x++;});
     $("#second-location h1").html(flights[1].name[1] + "<br />&pound;"+flights[1].cheapest_quote.MinPrice);
     $("#second-location p").html("You have <em>"+flights[1].friends.length+"</em> friends near "+flights[1].name[1]+", including <em>"+flights[1].friends[0].name+"</em>");
     $("#second-location button").attr("location", 1);
     $("#second-location").removeClass("hidden");
+    var x = 0;
+    $("#second-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[1].friends[x].pic); x++;});
     $("#third-location h1").html(flights[2].name[1] + "<br />&pound;"+flights[2].cheapest_quote.MinPrice);
     $("#third-location p").html("Flights available to go and see <em>"+flights[2].friends[0].name+"</em> and "+(flights[2].friends.length -1)+" others in "+flights[2].name[1]);
     $("#third-location button").attr("location", 2);
     $("#third-location").removeClass("hidden");
+    var x = 0;
+    $("#third-location .img-thumbnail").each(function (e) {$(this).attr("src",flights[2].friends[x].pic); x++;});
 }
 function prepare_flight(dest) {
     var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
@@ -106,7 +121,7 @@ function prepare_flight(dest) {
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td target=\"_blank\" class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/"+city_code+"/"+ss_date+"/"+ss_ret_date+"\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
+    r += "<td class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/"+city_code+"/"+ss_date+"/"+ss_ret_date+"\" class=\"btn btn-success\" target=\"_blank\">&pound;"+dest.MinPrice+"</a></td>";
     r += "</tr>";
     return r;
 }
