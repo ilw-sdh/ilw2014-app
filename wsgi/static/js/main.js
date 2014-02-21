@@ -34,18 +34,17 @@ $(document).ready( function () {
     });
 
     $(".friendlist tr").on("click", function() {
-        var any_selected = false;
-        var q = $(this).children(":last").children(".friend-location").text();
-        $(".friend-location").each(function () {
-            if($(this).hasClass("selected")) {any_selected = true; }
-            if($(this).text().toLowerCase().indexOf(q.toLowerCase()) != -1) {
-                $(this).parent().parent().show();
-            } else {
-                $(this).parent().parent().hide();
+        //open up a modal with that locations prices
+        if(ready) {
+            reset_modal();
+            $("#myModal").modal('toggle');
+            flights.forEach(function(f) {
+                if (f.name.indexOf($(this).children("span:last").text().split(",")[0])) {
+                    //this is to find the appropriate flight data
+                    console.log("city found");
+                }
             }
-            console.log(any_selected);
-        });
-        $(this).toggleClass("selected");
+        }
     });
     $('#search').on("keyup", function () {
         var q = $('#search').val();
