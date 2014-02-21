@@ -43,7 +43,7 @@ $(document).ready( function () {
                     //this is to find the appropriate flight data
                     console.log("city found");
                 }
-            }
+            });
         }
     });
     $('#search').on("keyup", function () {
