@@ -1,10 +1,4 @@
 //main.js
-/*var flights = [[{dest: "Poland", price: "242", carrier: "Ryan Air"},
-                    {dest: "Poland", price: "60", carrier: "British Airways"},
-                    {dest: "Poland", price: "260", carrier: "Joe's Hardware"}],
-            [ {dest: "Bristol", price: "160", carrier: "British Airways"},
-                    {dest: "Bristol", price: "20", carrier: "Joe's Hardware"}]];
-*/
 var flights;
 var ready = false;
 var g_city_code;
@@ -40,11 +34,9 @@ $(document).ready( function () {
         if(ready) {
             reset_modal();
             $("#myModal").modal('toggle');
-            flights.forEach(function(f) {
-                if (f.name.indexOf($(this).children("span:last").text().split(",")[0])) {
-                    //this is to find the appropriate flight data
-                    console.log("city found");
-                }
+            var uid = "1234";
+            $.get( "friend_flights/?uid="+uid, function( data ) {
+                //do stuff!! probs using modals
             });
         }
     });
@@ -81,6 +73,7 @@ function populate_modal(city_id) {
 }
 function populate_data() {
     ready = true;
+    $("#chooser").removeClass("hidden");
     $("#Loading-Content").addClass("hidden");
     $("#first-location h1").html(flights[0].name[1] + "<br />&pound;"+flights[0].cheapest_quote.MinPrice);
     $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name+"</em> and "+(flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
