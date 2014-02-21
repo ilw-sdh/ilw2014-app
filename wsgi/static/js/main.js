@@ -37,10 +37,16 @@ $(document).ready( function () {
             var country = $(this).find(".friend-location").attr("data-country");
             var lat = $(this).find(".friend-location").attr("data-lat");
             var lon = $(this).find(".friend-location").attr("data-lon");
+            var fname = $(this).find(".friend-name").text();
             $.get( "/friend_flights?country="+country+"&lat="+lat+"&lon="+lon, function( data ) {
                 //do stuff!! probs using modals
-                var friend_flights = JSON.parse(data);
-                configure_modal(friend_flights.result);
+                var f = JSON.parse(data);
+                try {
+                    configure_modal(f.result);
+                }catch(err) {
+                    //show modal things saying no flights available
+                    reset_modal();
+                    $("#modalTitle").text("No Flights available to see "+fname);
             });
         }
     });
