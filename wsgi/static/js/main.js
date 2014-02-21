@@ -99,12 +99,13 @@ function prepare_flight(dest) {
     var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     var ss_date = moment(dest.OutboundLeg.DepartureDate).format('YYYY-MM-DD');
+    var s_ret_date = moment(dest.InboundLeg.DepartureDate).format('YYYY-MM-DD');
     var city_code = g_city_code;
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td target=\"_blank\" class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/"+city_code+"/"+ss_date+"/anytime\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
+    r += "<td target=\"_blank\" class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/"+city_code+"/"+ss_date+"/"+ss_ret_date+"\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
     r += "</tr>";
     return r;
 }
