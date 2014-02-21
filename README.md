@@ -11,7 +11,7 @@ Developers
 - AngusP (Development)
 - hamhut1066 (Development)
 - A3gis (Development)
-- Malyatrax (Assets/Tea, Coffee & Snacks provisioning)
+- Malyatrax (Assets/Tea, Coffee, Snacks provisioning & Logo)
 
 
 Dependencies
