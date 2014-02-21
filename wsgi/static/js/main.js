@@ -63,7 +63,7 @@ function reset_modal() {
     //resets the modal to a loading screen
     $("#modalTitle").text("Loading...");
     $("#flight-data tr").remove();
-    $("#flight-data").html("<tr><th>Date</th><th>Agent</th><th>Fly Now!</th></tr>");
+    $("#flight-data").html("<tr><th>Date</th><th>Airline</th><th>Fly Now!</th></tr>");
 }
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
@@ -98,7 +98,7 @@ function prepare_flight(dest) {
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"auto left\" title=\""+rel_date+"\"></div>"+date+" to "+ret_date+"</td>";
+    r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
     r += "<td class=\"price\"><strong>&pound;"+dest.MinPrice+"</strong></td>";
     r += "</tr>";
