@@ -89,10 +89,15 @@ function configure_modal(data) {
 }
 function populate_data() {
     ready = true;
+
+    var locationDescription = function (flight) {
+        return "You have <em>"+flight.friends.length+"</em> friends near "+flight.name[1];
+    }
+
     $("#chooser").removeClass("hidden");
     $("#Loading-Content").addClass("hidden");
     $("#first-location h1").html(flights[0].name[1] + "<br />&pound;"+flights[0].cheapest_quote.MinPrice);
-    $("#first-location p").html("Go and see <em>"+flights[0].friends[0].name+", "+flights[0].friends[1].name+"</em> and "+(flights[0].friends.length - 2)+" others in "+flights[0].name[1]+", "+flights[0].name[2]);
+    $("#first-location p").html(locationDescription(flights[0]));
     $("#first-location button").attr("location", 0);
     $("#first-location").removeClass("hidden");
     var x = 0;
@@ -106,7 +111,7 @@ function populate_data() {
         x++;
     });
     $("#second-location h1").html(flights[1].name[1] + "<br />&pound;"+flights[1].cheapest_quote.MinPrice);
-    $("#second-location p").html("You have <em>"+flights[1].friends.length+"</em> friends near "+flights[1].name[1]+", including <em>"+flights[1].friends[0].name+"</em>");
+    $("#second-location p").html(locationDescription(flights[1]));
     $("#second-location button").attr("location", 1);
     $("#second-location").removeClass("hidden");
     var x = 0;
@@ -120,7 +125,7 @@ function populate_data() {
         x++;
     });
     $("#third-location h1").html(flights[2].name[1] + "<br />&pound;"+flights[2].cheapest_quote.MinPrice);
-    $("#third-location p").html("Flights available to go and see <em>"+flights[2].friends[0].name+"</em> and "+(flights[2].friends.length -1)+" others in "+flights[2].name[1]);
+    $("#third-location p").html(locationDescription(flights[2]));
     $("#third-location button").attr("location", 2);
     $("#third-location").removeClass("hidden");
     var x = 0;
