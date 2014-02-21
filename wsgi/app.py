@@ -101,10 +101,26 @@ def index():
 def top_flights():
     return json.dumps(get_top_airports_by_index(), indent=4)
 
-@app.route("/friends_api")
+@app.route("/friend_flights")
 @login_required
-def friends_api():
-    return json.dumps(get_friends(), indent=4)
+def friend_flights():
+    country, lat, lon = request.args['country'], float(request.args['lat']), float(request.args['lon'])
+    airports_codes = utils.around_by_country(country, lat, lon)
+
+    airports = defaultdict(lambda: {}, {})
+    for k in airports_codes:
+        try:
+            airports[k]['quotes'] = skyscanner.find_cheapest_quotes("edi", k)
+            airports[k]['name']  = utils.iata_to_name(k)
+            airports[k]['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, airports[k]['quotes'])
+            airports[k]['url'] = skyscanner.url_for_journey("edi", k)
+        except: pass
+
+    if len(airports) == 0:
+        return json.dumps({ 'result': None }, indent=4)
+    else:
+        best_airport = reduce(lambda x, y: x if x['cheapest_quote']['MinPrice'] < y['cheapest_quote']['MinPrice'] else y, airports.values())
+        return json.dumps({ 'result': best_airport }, indent=4)
 
 @app.route("/")
 def hello():
