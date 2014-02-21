@@ -103,6 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 	    width: 45px !important;
 	    height: 45px !important;
 	    overflow: hidden;
+	    min-width: 45px;
 	}
 
 
@@ -202,6 +203,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.img-thumbnail {
+    padding: 0;
+    border: 2px solid #DDD;
+}
+
 .list-container {
     padding: 0 !important;
 }
@@ -216,6 +222,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', Helvetica, Helvetica-Neue, serif;
     font-weight: bold;
 }
+
+    .navbar-default .navbar-brand:hover, 
+    .navbar-default .navbar-brand:focus {
+	color: #B49BC7;
+    }
 
 .navbar-purple {
     background-color: #8359A3;
