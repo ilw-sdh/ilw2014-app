@@ -100,7 +100,7 @@ function prepare_flight(dest) {
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
-    r += "<td class=\"price\"><a href=\"\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
+    r += "<td class=\"price\"><a href=\"http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/edi/"+flights[city_id]['url']+"/"+dest.OutboundLeg.DepartureDate+"/anytime\" class=\"btn btn-success\">&pound;"+dest.MinPrice+"</a></td>";
     r += "</tr>";
     return r;
 }
