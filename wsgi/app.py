@@ -115,6 +115,7 @@ def friend_flights():
                 airports[k]['name']  = utils.iata_to_name(k)
                 airports[k]['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, airports[k]['quotes'])
                 airports[k]['url'] = skyscanner.url_for_journey("edi", k)
+                airports[k]['iata'] = k
             except: pass
 
         if len(airports) == 0:
