@@ -38,9 +38,9 @@ $(document).ready( function () {
             var country = $(this).find(".friend-location").attr("data-country");
             var lat = $(this).find(".friend-location").attr("data-lat");
             var lon = $(this).find(".friend-location").attr("data-lon");
-            $.get( "friend_flights/?country="+country+"&lat="+lat+"&lon="+lon, function( data ) {
+            $.get( "friend_flights?country="+country+"&lat="+lat+"&lon="+lon, function( data ) {
                 //do stuff!! probs using modals
-                friend_flights = data;
+                friend_flights = JSON.parse(data);
             });
         }
     });
