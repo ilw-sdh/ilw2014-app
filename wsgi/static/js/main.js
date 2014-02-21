@@ -76,6 +76,7 @@ function populate_modal(city_id) {
         $("#flight-data tr:last").after(prepare_flight(entry)); 
     });
     $(".date-tooltip").tooltip();
+    g_city_code = undefined;
 }
 function populate_data() {
     ready = true;
