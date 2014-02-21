@@ -47,6 +47,7 @@ $(document).ready( function () {
                     //show modal things saying no flights available
                     reset_modal();
                     $("#modalTitle").text("No Flights available to see "+fname);
+                }
             });
         }
     });
