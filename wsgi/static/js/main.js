@@ -100,7 +100,7 @@ function prepare_flight(dest) {
     var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     var ss_date = moment(dest.OutboundLeg.DepartureDate).format('YYYY-MM-DD');
-    var s_ret_date = moment(dest.InboundLeg.DepartureDate).format('YYYY-MM-DD');
+    var ss_ret_date = moment(dest.InboundLeg.DepartureDate).format('YYYY-MM-DD');
     var city_code = g_city_code;
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
