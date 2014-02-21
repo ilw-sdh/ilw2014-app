@@ -7,6 +7,7 @@
 */
 var flights;
 var ready = false;
+var g_city_code;
 //get flight data
 $.get( "/top_flights", function( data ) {
     flights = JSON.parse(data);
@@ -67,6 +68,7 @@ function reset_modal() {
 function populate_modal(city_id) {
     //this gets all relevant data for the modal
     var data = flights[city_id];
+    g_city_code = data.iata;
     $("#modalTitle").text(data.name[0]+", "+data.name[1]+", "+data.name[2]);
     $("#skyscanner-url").attr('href', flights[city_id]['url']);
     $("#flight-data tr:last").after(prepare_flight(data.cheapest_quote));
@@ -96,8 +98,7 @@ function prepare_flight(dest) {
     var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
     var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     var ss_date = moment(dest.OutboundLeg.DepartureDate).format('YYYY-MM-DD');
-    console.log(dest);
-    var city_code = dest.iata;
+    var city_code = g_city_code;
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
     r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"left\" title=\""+rel_date+"\"></div>"+date+"<small style=\"color: #666;\"> to "+ret_date+"</small></td>";
