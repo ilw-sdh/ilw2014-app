@@ -93,11 +93,12 @@ function populate_data() {
     $("#third-location").removeClass("hidden");
 }
 function prepare_flight(dest) {
-    var date = moment(dest.InboundLeg.DepartureDate).format('ll');
-    var rel_date = moment(dest.InboundLeg.DepartureDate).fromNow();
+    var date = moment(dest.OutboundLeg.DepartureDate).format('ll');
+    var ret_date = moment(dest.InboundLeg.DepartureDate).format('ll');
+    var rel_date = moment(dest.OutboundLeg.DepartureDate).fromNow();
     //add a 'time until' event using .fromNow() as a tooltip
     var r = "<tr>";
-    r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"auto left\" title=\""+rel_date+"\"></div>"+date+"</td>";
+    r += "<td class=\"date\"><div class=\"date-tooltip\" data-toggle=\"tooltip\" data-placement=\"auto left\" title=\""+rel_date+"\"></div>"+date+" to "+ret_date+"</td>";
     r += "<td class=\"carrier\">"+dest.InboundLeg.Carrier+"</td>";
     r += "<td class=\"price\"><strong>&pound;"+dest.MinPrice+"</strong></td>";
     r += "</tr>";
