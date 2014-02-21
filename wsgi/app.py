@@ -110,14 +110,17 @@ def friend_flights():
     airports = defaultdict(lambda: {}, {})
     for k in airports_codes:
         try:
-            airports[k]['name']  = utils.iata_to_name(k)
             airports[k]['quotes'] = skyscanner.find_cheapest_quotes("edi", k)
+            airports[k]['name']  = utils.iata_to_name(k)
             airports[k]['cheapest_quote'] = reduce(lambda x, y: x if x['MinPrice'] < y['MinPrice'] else y, airports[k]['quotes'])
             airports[k]['url'] = skyscanner.url_for_journey("edi", k)
         except: pass
 
-    best_airport = reduce(lambda x, y: x if x['cheapest_quote']['MinPrice'] < y['cheapest_quote']['MinPrice'] else y, airports.values())
-    return json.dumps(best_airport, indent=4)
+    if len(airports) == 0:
+        return json.dumps({ 'result': None }, indent=4)
+    else:
+        best_airport = reduce(lambda x, y: x if x['cheapest_quote']['MinPrice'] < y['cheapest_quote']['MinPrice'] else y, airports.values())
+        return json.dumps({ 'result': best_airport }, indent=4)
 
 @app.route("/")
 def hello():
