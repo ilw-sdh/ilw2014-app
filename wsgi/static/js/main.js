@@ -102,7 +102,7 @@ function populate_data() {
     ready = true;
 
     var locationDescription = function (flight) {
-        return "You have <em>"+flight.friends.length+"</em> friends near "+flight.name[1];
+        return "You have "+flight.friends.length+" friends near "+flight.name[1];
     }
 
     $("#chooser").removeClass("hidden");
