@@ -4,11 +4,11 @@ from urllib import quote_plus
 import json
 
 API_ROOT = 'http://partners.api.skyscanner.net/apiservices'
-API_KEY = 'ilw02375360823411197864901011420'
+API_KEY = "ilw02375360823411197864901011420"
 
 def get(path):
-	print API_ROOT + path + "?apiKey=ilw02375360823411197864901011420"
-	raw = urlopen(API_ROOT + path + "?apiKey=ilw02375360823411197864901011420").read()
+	print API_ROOT + path + "?apiKey=" + API_KEY
+	raw = urlopen(API_ROOT + path + "?apiKey=" + API_KEY).read()
 	return json.loads(raw)
 
 # Returns a list of quotes with attribute:
